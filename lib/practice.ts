@@ -204,6 +204,7 @@ export interface PracticeOverview {
   newCards: number;
   dueNew: number;
   reviewsDone: number;
+  retention: number | null;
 }
 
 export function getPracticeOverview(): PracticeOverview {
@@ -211,11 +212,24 @@ export function getPracticeOverview(): PracticeOverview {
   const reviewsDone = (
     db.prepare("SELECT COUNT(*) AS c FROM review_logs").get() as { c: number }
   ).c;
+
+  // Honest retention: share of reviews rated Good or Easy (answered correctly).
+  let retention: number | null = null;
+  if (reviewsDone > 0) {
+    const correct = (
+      db
+        .prepare("SELECT COUNT(*) AS c FROM review_logs WHERE rating >= 3")
+        .get() as { c: number }
+    ).c;
+    retention = Math.round((correct / reviewsDone) * 1000) / 10;
+  }
+
   return {
     due: countDue(),
     newCards: countNew(),
     dueNew: countDue() + countNew(),
     reviewsDone: Number(reviewsDone),
+    retention,
   };
 }
 

@@ -74,7 +74,11 @@ export default async function PracticePage({
         <Stat label="Due" value={level ? countDue(level) : overview.due} />
         <Stat label="New" value={level ? countNew(level) : overview.newCards} />
         <Stat label="To review" value={(level ? countDue(level) : overview.due) + (level ? countNew(level) : overview.newCards)} />
-        <Stat label="Reviews done" value={overview.reviewsDone} />
+        <Stat
+          label="Reviews done"
+          value={overview.retention !== null ? `${overview.retention}%` : overview.reviewsDone}
+          sub={overview.retention !== null ? `${overview.reviewsDone} total · retention` : undefined}
+        />
       </div>
 
       <PracticeSession cards={session} totalDue={(level ? countDue(level) : overview.due) + (level ? countNew(level) : overview.newCards)} level={level} />
@@ -151,11 +155,12 @@ export default async function PracticePage({
   );
 }
 
-function Stat({ label, value }: { label: string; value: number }) {
+function Stat({ label, value, sub }: { label: string; value: number | string; sub?: string }) {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-gray-900">
       <div className="text-xs text-gray-500 dark:text-gray-400">{label}</div>
       <div className="text-2xl font-bold">{value}</div>
+      {sub && <div className="mt-0.5 text-[11px] text-gray-400">{sub}</div>}
     </div>
   );
 }
