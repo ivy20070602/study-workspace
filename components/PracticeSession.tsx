@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { PracticeCard } from "@/lib/practice";
 import { Rating } from "ts-fsrs";
 
 const GRADES = [
-  { rating: Rating.Again, label: "Again", cls: "bg-red-600 hover:bg-red-700" },
-  { rating: Rating.Hard, label: "Hard", cls: "bg-amber-500 hover:bg-amber-600" },
-  { rating: Rating.Good, label: "Good", cls: "bg-blue-600 hover:bg-blue-700" },
-  { rating: Rating.Easy, label: "Easy", cls: "bg-emerald-600 hover:bg-emerald-700" },
+  { rating: Rating.Again, label: "Again", key: "1", cls: "bg-red-600 hover:bg-red-700" },
+  { rating: Rating.Hard, label: "Hard", key: "2", cls: "bg-amber-500 hover:bg-amber-600" },
+  { rating: Rating.Good, label: "Good", key: "3", cls: "bg-blue-600 hover:bg-blue-700" },
+  { rating: Rating.Easy, label: "Easy", key: "4", cls: "bg-emerald-600 hover:bg-emerald-700" },
 ];
 
 export function PracticeSession({
@@ -26,12 +26,11 @@ export function PracticeSession({
 
   const current = queue[0];
 
-  async function loadMore() {
+  const loadMore = useCallback(async () => {
     try {
       const res = await fetch("/api/practice");
       const data = (await res.json()) as { cards: PracticeCard[] };
       if (data.cards.length === 0) {
-        setDone((d) => d);
         setQueue([]);
       } else {
         setQueue((q) => [...q, ...data.cards]);
@@ -39,33 +38,61 @@ export function PracticeSession({
     } catch {
       setError("Could not load more cards.");
     }
-  }
+  }, []);
 
-  async function rate(rating: Rating) {
-    if (!current || busy) return;
-    setBusy(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/practice", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ word_id: current.word.word_id, rating }),
-      });
-      if (!res.ok) throw new Error("submit failed");
-      setDone((d) => d + 1);
-      setRevealed(false);
-      const remaining = queue.slice(1);
-      if (remaining.length === 0) {
-        await loadMore();
-      } else {
-        setQueue(remaining);
+  const rate = useCallback(
+    async (rating: Rating) => {
+      if (!current || busy) return;
+      setBusy(true);
+      setError(null);
+      try {
+        const res = await fetch("/api/practice", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ word_id: current.word.word_id, rating }),
+        });
+        if (!res.ok) throw new Error("submit failed");
+        setDone((d) => d + 1);
+        setRevealed(false);
+        setQueue((q) => {
+          const remaining = q.slice(1);
+          if (remaining.length === 0) {
+            loadMore();
+          }
+          return remaining;
+        });
+      } catch {
+        setError("Could not save your rating. Try again.");
+      } finally {
+        setBusy(false);
       }
-    } catch {
-      setError("Could not save your rating. Try again.");
-    } finally {
-      setBusy(false);
-    }
-  }
+    },
+    [current, busy, loadMore]
+  );
+
+  const handleKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (busy || !current) return;
+      if (e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        if (!revealed) setRevealed(true);
+        return;
+      }
+      if (revealed) {
+        const g = GRADES.find((x) => x.key === e.key);
+        if (g) {
+          e.preventDefault();
+          rate(g.rating);
+        }
+      }
+    },
+    [busy, current, revealed, rate]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [handleKey]);
 
   if (!current) {
     return (
@@ -114,6 +141,7 @@ export function PracticeSession({
             >
               Show answer
             </button>
+            <p className="mt-2 text-xs text-gray-400">or press Space</p>
           </div>
         ) : (
           <div className="mt-6 space-y-4">
@@ -138,9 +166,10 @@ export function PracticeSession({
                   key={g.rating}
                   onClick={() => rate(g.rating)}
                   disabled={busy}
-                  className={`rounded-lg px-5 py-2.5 text-sm font-medium text-white ${g.cls} disabled:opacity-50`}
+                  className={`flex items-center gap-1.5 rounded-lg px-5 py-2.5 text-sm font-medium text-white ${g.cls} disabled:opacity-50`}
                 >
                   {g.label}
+                  <kbd className="rounded bg-white/20 px-1 py-0.5 text-xs">{g.key}</kbd>
                 </button>
               ))}
             </div>

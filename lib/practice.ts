@@ -210,3 +210,65 @@ export function getPracticeOverview(): PracticeOverview {
     reviewsDone: Number(reviewsDone),
   };
 }
+
+export interface ReviewLog {
+  word_id: number;
+  lemma: string;
+  part_of_speech: string;
+  cefr_level: string;
+  rating: number;
+  reviewed_at: string;
+  scheduled_days: number;
+}
+
+export function getRecentReviews(limit = 20): ReviewLog[] {
+  const db = getDb();
+  return db
+    .prepare(
+      `SELECT r.word_id, w.lemma, w.part_of_speech, w.cefr_level,
+              r.rating, r.reviewed_at, r.scheduled_days
+       FROM review_logs r
+       JOIN words w ON w.id = r.word_id
+       ORDER BY r.reviewed_at DESC
+       LIMIT ?`
+    )
+    .all(limit) as ReviewLog[];
+}
+
+export interface LevelStats {
+  cefr_level: string;
+  total: number;
+  reviewed: number;
+  due: number;
+}
+
+export function getStatsByLevel(): LevelStats[] {
+  const db = getDb();
+  const now = new Date().toISOString();
+  const levels = ["A1", "A2", "B1", "B2", "C1", "C2"];
+  return levels.map((level) => {
+    const total = (
+      db
+        .prepare("SELECT COUNT(*) AS c FROM words WHERE cefr_level = ?")
+        .get(level) as { c: number }
+    ).c;
+    const reviewed = (
+      db
+        .prepare(
+          `SELECT COUNT(DISTINCT r.word_id) AS c FROM review_logs r
+           JOIN words w ON w.id = r.word_id WHERE w.cefr_level = ?`
+        )
+        .get(level) as { c: number }
+    ).c;
+    const due = (
+      db
+        .prepare(
+          `SELECT COUNT(*) AS c FROM cards c
+           JOIN words w ON w.id = c.word_id
+           WHERE w.cefr_level = ? AND c.due <= ?`
+        )
+        .get(level, now) as { c: number }
+    ).c;
+    return { cefr_level: level, total: Number(total), reviewed: Number(reviewed), due: Number(due) };
+  });
+}
