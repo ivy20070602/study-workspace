@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { SpeakButton } from "@/components/SpeakButton";
 import type { PracticeCard } from "@/lib/practice";
 import { Rating } from "ts-fsrs";
 
@@ -175,9 +176,12 @@ export function PracticeSession({
           </div>
         ) : (
           <div className="mt-6 space-y-4">
-            <p className="text-center text-lg text-gray-800 dark:text-gray-200">
-              {current.word.definition}
-            </p>
+            <div className="flex items-center justify-center gap-2">
+              <p className="text-center text-lg text-gray-800 dark:text-gray-200">
+                {current.word.definition}
+              </p>
+              <SpeakButton text={current.word.lemma} />
+            </div>
             {current.word.examples.length > 0 && (
               <ul className="mx-auto max-w-xl space-y-1">
                 {current.word.examples.map((ex, i) => (

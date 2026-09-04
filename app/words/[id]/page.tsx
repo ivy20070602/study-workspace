@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
+import { SpeakButton } from "@/components/SpeakButton";
 import { WordNavKeys } from "@/components/WordNavKeys";
 import { getWordById, getAdjacentWords } from "@/lib/vocab";
 
@@ -31,10 +32,14 @@ export default async function WordDetailPage({
 
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
+          <h1 className="flex items-center gap-2 text-3xl font-bold">
             {word.article && word.part_of_speech === "Nomen"
               ? `${word.article} ${word.lemma}`
               : word.lemma}
+            <SpeakButton
+              text={word.lemma}
+              className="-ml-1"
+            />
           </h1>
           <div className="mt-1 flex items-center gap-2 text-gray-600 dark:text-gray-400">
             <span>{word.part_of_speech}</span>
