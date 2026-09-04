@@ -1,4 +1,4 @@
-import { createReadStream } from "node:fs";
+import { createReadStream, mkdirSync } from "node:fs";
 import { createInterface } from "node:readline";
 import { createRequire } from "node:module";
 import path from "node:path";
@@ -9,7 +9,8 @@ const require = createRequire(import.meta.url);
 const Database = require("better-sqlite3");
 
 const rootDir = path.dirname(path.dirname(path.dirname(fileURLToPath(import.meta.url))));
-const DEFAULT_DB = path.join(rootDir, "data", "vocab.db");
+const DATA_DIR_ENV = process.env.DATA_DIR ? path.resolve(rootDir, process.env.DATA_DIR) : null;
+const DEFAULT_DB = path.join(DATA_DIR_ENV ?? path.join(rootDir, "data"), "vocab.db");
 
 export function readRows(source) {
   return new Promise((resolve, reject) => {
@@ -74,14 +75,39 @@ export function dryRun(rows) {
   return { stats, sample };
 }
 
-export function importRows(rows, dbPath = DEFAULT_DB) {
+export function importRows(rows, dbPath = DEFAULT_DB, opts = {}) {
   return new Promise((resolve, reject) => {
     let db;
     try {
+      try {
+        mkdirSync(path.dirname(dbPath), { recursive: true });
+      } catch {
+        /* already exists */
+      }
       db = new Database(dbPath);
       db.pragma("journal_mode = WAL");
       db.pragma("foreign_keys = ON");
       db.pragma("synchronous = OFF");
+
+      // Re-importing wipes progress (cards/review_logs) because it rewrites
+      // the vocab and word IDs can change. Guard against silent data loss.
+      const hasProgress = (() => {
+        try {
+          const row = db.prepare(
+            "SELECT (SELECT COUNT(*) FROM review_logs) + (SELECT COUNT(*) FROM cards) AS n"
+          ).get();
+          return Number(row?.n ?? 0) > 0;
+        } catch {
+          return false;
+        }
+      })();
+
+      if (hasProgress && opts.wipeProgress !== true) {
+        throw new Error(
+          "Re-importing would delete existing practice progress (cards/review_logs). " +
+            "Run with --wipe-progress to confirm, or back up data/vocab.db first."
+        );
+      }
 
       db.exec(`
         CREATE TABLE IF NOT EXISTS words (
@@ -224,8 +250,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       return rows;
     })
     .then((rows) => {
-      const dbArg = process.argv[2];
-      return importRows(rows, dbArg ?? DEFAULT_DB).then((r) =>
+      const dbArg = process.argv[2]?.startsWith("--") ? undefined : process.argv[2];
+      const wipeProgress = process.argv.includes("--wipe-progress");
+      return importRows(rows, dbArg ?? DEFAULT_DB, { wipeProgress }).then((r) =>
         console.log("Imported:", r)
       );
     })

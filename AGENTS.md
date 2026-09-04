@@ -23,6 +23,8 @@ Self-use German vocabulary learning website. English UI; German-only definitions
 ## Checks
 - `npm run typecheck` and `npm run lint` must pass. `npm run build` builds green.
 - Pipeline order: `npm run content:fetch-cefr` → `content:assign-b2c2` → `content:extract` → `content:import` (import rebuilds FTS).
+- `content:import` (import-db.mjs) refuses to run if `cards`/`review_logs` contain progress; pass `--wipe-progress` to confirm (progress is cascade-deleted with words). Backup `data/vocab.db` first if you need history.
+- `DATA_DIR` env var (default `./data`) customizes the DB/data location; honored by both `lib/db.ts` and `import-db.mjs`. Configured via `.env` (see `.env.example`).
 - Word IDs in DB are not contiguous from 1 (restart at ~5675 after re-imports); don't assume id 1 exists.
 
 ## Where things are
