@@ -8,6 +8,7 @@ export interface WordSummary {
   cefr_level: string;
   article: string | null;
   sense_count: number;
+  first_definition?: string;
 }
 
 export interface SenseRow {
@@ -37,11 +38,36 @@ const POS_ORDER: Record<string, number> = {
 
 const BOOKMARK_FILTER = "EXISTS (SELECT 1 FROM bookmarks b WHERE b.normalized_lemma = w.normalized_lemma)";
 
+export type SearchScope = "lemma" | "definition";
+
+function escapeLike(s: string): string {
+  return s.replace(/[\\%_]/g, (m) => `\\${m}`);
+}
+
+function definitionMatchClause(term: string): string {
+  const like = `%${escapeLike(term)}%`;
+  return [
+    "EXISTS (",
+    "  SELECT 1 FROM word_senses s WHERE s.word_id = w.id AND (",
+    "    s.definition LIKE ? ESCAPE '\\' OR",
+    "    EXISTS (SELECT 1 FROM word_examples e WHERE e.word_sense_id = s.id AND e.sentence LIKE ? ESCAPE '\\')",
+    "  )",
+    ")",
+  ].join("\n");
+}
+
 export function posLabel(pos: string): string {
   return pos;
 }
 
-export function countWords(opts?: { cefr?: string; pos?: string; q?: string; exact?: boolean; bookmarked?: boolean }): number {
+export function countWords(opts?: {
+  cefr?: string;
+  pos?: string;
+  q?: string;
+  exact?: boolean;
+  scope?: SearchScope;
+  bookmarked?: boolean;
+}): number {
   const db = getDb();
   const where: string[] = [];
   const params: unknown[] = [];
@@ -49,6 +75,10 @@ export function countWords(opts?: { cefr?: string; pos?: string; q?: string; exa
   if (opts?.q && opts?.exact) {
     where.push("w.normalized_lemma = ?");
     params.push(opts.q.toLowerCase());
+  } else if (opts?.q && opts?.scope === "definition") {
+    const like = `%${escapeLike(opts.q)}%`;
+    where.push(definitionMatchClause(opts.q));
+    params.push(like, like);
   } else if (opts?.q) {
     const terms = opts.q.split(/\s+/).filter(Boolean).map((t) => t.toLowerCase() + "*").join(" AND ");
     where.push("w.id IN (SELECT rowid FROM words_fts WHERE words_fts MATCH ?)");
@@ -78,6 +108,7 @@ export function listWords(opts?: {
   pos?: string;
   q?: string;
   exact?: boolean;
+  scope?: SearchScope;
   bookmarked?: boolean;
   limit?: number;
   offset?: number;
@@ -85,12 +116,18 @@ export function listWords(opts?: {
   const db = getDb();
   const where: string[] = [];
   const params: unknown[] = [];
+  const q = opts?.q?.trim();
+  const isDefinitionSearch = Boolean(q && opts?.scope === "definition");
 
-  if (opts?.q && opts?.exact) {
+  if (q && opts?.exact) {
     where.push("w.normalized_lemma = ?");
-    params.push(opts.q.toLowerCase());
-  } else if (opts?.q) {
-    const terms = opts.q.split(/\s+/).filter(Boolean).map((t) => t.toLowerCase() + "*").join(" AND ");
+    params.push(q.toLowerCase());
+  } else if (isDefinitionSearch) {
+    const like = `%${escapeLike(q!)}%`;
+    where.push(definitionMatchClause(q!));
+    params.push(like, like);
+  } else if (q) {
+    const terms = q.split(/\s+/).filter(Boolean).map((t) => t.toLowerCase() + "*").join(" AND ");
     where.push("w.id IN (SELECT rowid FROM words_fts WHERE words_fts MATCH ?)");
     params.push(terms);
   }
@@ -114,7 +151,11 @@ export function listWords(opts?: {
   const rows = db
     .prepare(
       `SELECT w.id, w.lemma, w.normalized_lemma, w.part_of_speech, w.cefr_level, w.article,
-              (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count
+              (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count${
+                isDefinitionSearch
+                  ? ", (SELECT s.definition FROM word_senses s WHERE s.word_id = w.id ORDER BY s.sense_number LIMIT 1) AS first_definition"
+                  : ""
+              }
        FROM words w
        ${whereSql}
        ORDER BY w.normalized_lemma
@@ -128,6 +169,7 @@ export function listWords(opts?: {
     cefr_level: string;
     article: string | null;
     sense_count: number;
+    first_definition?: string;
   }>;
 
   return rows.map((r) => ({

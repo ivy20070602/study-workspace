@@ -33,26 +33,28 @@ function buildHref(params: Record<string, string | undefined>) {
 export default async function WordsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ cefr?: string; pos?: string; q?: string; exact?: string; bookmarked?: string; page?: string }>;
+  searchParams: Promise<{ cefr?: string; pos?: string; q?: string; exact?: string; scope?: string; bookmarked?: string; page?: string }>;
 }) {
   const sp = await searchParams;
   const cefr = sp.cefr && LEVELS.includes(sp.cefr) ? sp.cefr : undefined;
   const pos = sp.pos && POS_LIST.includes(sp.pos) ? sp.pos : undefined;
   const q = sp.q?.trim() || undefined;
   const exact = sp.exact === "1";
+  const scope: "lemma" | "definition" = sp.scope === "definition" ? "definition" : "lemma";
   const bookmarked = sp.bookmarked === "1";
   const page = Math.max(1, Number(sp.page) || 1);
   const offset = (page - 1) * PAGE_SIZE;
 
-  const total = countWords({ cefr, pos, q, bookmarked });
+  const total = countWords({ cefr, pos, q, scope, bookmarked });
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const clampedPage = Math.min(page, totalPages);
-  const words = listWords({ cefr, pos, q, exact, bookmarked, limit: PAGE_SIZE, offset });
+  const words = listWords({ cefr, pos, q, exact, scope, bookmarked, limit: PAGE_SIZE, offset });
 
   const filterParams: Record<string, string | undefined> = {
     cefr,
     pos,
     exact: exact ? "1" : undefined,
+    scope: scope === "definition" ? "definition" : undefined,
     bookmarked: bookmarked ? "1" : undefined,
   };
 
@@ -68,6 +70,7 @@ export default async function WordsPage({
           {cefr ? ` · level ${cefr}` : ""}
           {pos ? ` · ${pos}` : ""}
           {bookmarked ? " · bookmarked" : ""}
+          {scope === "definition" && q ? " · matching definitions" : ""}
         </p>
       </div>
 
@@ -84,9 +87,20 @@ export default async function WordsPage({
             name="exact"
             value="1"
             defaultChecked={exact}
-            className="h-3.5 w-3.5 rounded border-gray-300 text-blue-600"
+            disabled={scope === "definition"}
+            className="h-3.5 w-3.5 rounded border-gray-300 text-blue-600 disabled:opacity-40"
           />
           Exact
+        </label>
+        <label className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400">
+          <input
+            type="checkbox"
+            name="scope"
+            value="definition"
+            defaultChecked={scope === "definition"}
+            className="h-3.5 w-3.5 rounded border-gray-300 text-blue-600"
+          />
+          In definitions
         </label>
         {cefr ? <input type="hidden" name="cefr" value={cefr} /> : null}
         {pos ? <input type="hidden" name="pos" value={pos} /> : null}
@@ -176,12 +190,17 @@ export default async function WordsPage({
                           ? `${w.article} ${w.lemma}`
                           : w.lemma
                       }
-                      query={q}
+                      query={scope === "definition" ? undefined : q}
                     />
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">
                     {w.part_of_speech}
                   </div>
+                  {scope === "definition" && w.first_definition && (
+                    <div className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
+                      <Highlight text={w.first_definition} query={q} />
+                    </div>
+                  )}
                 </div>
                 <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
                   {w.cefr_level}
