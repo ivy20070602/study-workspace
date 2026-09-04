@@ -61,6 +61,23 @@ function initTables(db: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_words_cefr ON words(cefr_level);
     CREATE INDEX IF NOT EXISTS idx_words_normalized ON words(normalized_lemma);
 
+    CREATE VIRTUAL TABLE IF NOT EXISTS words_fts USING fts5(
+      lemma,
+      normalized_lemma,
+      content='words',
+      content_rowid='id'
+    );
+    CREATE TRIGGER IF NOT EXISTS words_ai AFTER INSERT ON words BEGIN
+      INSERT INTO words_fts(rowid, lemma, normalized_lemma) VALUES (new.id, new.lemma, new.normalized_lemma);
+    END;
+    CREATE TRIGGER IF NOT EXISTS words_ad AFTER DELETE ON words BEGIN
+      INSERT INTO words_fts(words_fts, rowid, lemma, normalized_lemma) VALUES ('delete', old.id, old.lemma, old.normalized_lemma);
+    END;
+    CREATE TRIGGER IF NOT EXISTS words_au AFTER UPDATE ON words BEGIN
+      INSERT INTO words_fts(words_fts, rowid, lemma, normalized_lemma) VALUES ('delete', old.id, old.lemma, old.normalized_lemma);
+      INSERT INTO words_fts(rowid, lemma, normalized_lemma) VALUES (new.id, new.lemma, new.normalized_lemma);
+    END;
+
     CREATE TABLE IF NOT EXISTS cards (
       word_id INTEGER PRIMARY KEY REFERENCES words(id) ON DELETE CASCADE,
       state INTEGER NOT NULL DEFAULT 0,
@@ -96,4 +113,9 @@ export function closeDb() {
     _db.close();
     _db = null;
   }
+}
+
+export function rebuildFts() {
+  const db = getDb();
+  db.exec("INSERT INTO words_fts(words_fts) VALUES('rebuild')");
 }

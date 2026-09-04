@@ -38,11 +38,19 @@ export function posLabel(pos: string): string {
   return pos;
 }
 
-export function countWords(opts?: { cefr?: string; pos?: string; q?: string }): number {
+export function countWords(opts?: { cefr?: string; pos?: string; q?: string; exact?: boolean }): number {
   const db = getDb();
   const where: string[] = [];
   const params: unknown[] = [];
 
+  if (opts?.q && opts?.exact) {
+    where.push("w.normalized_lemma = ?");
+    params.push(opts.q.toLowerCase());
+  } else if (opts?.q) {
+    const terms = opts.q.split(/\s+/).filter(Boolean).map((t) => t.toLowerCase() + "*").join(" AND ");
+    where.push("w.id IN (SELECT rowid FROM words_fts WHERE words_fts MATCH ?)");
+    params.push(terms);
+  }
   if (opts?.cefr) {
     where.push("w.cefr_level = ?");
     params.push(opts.cefr);
@@ -50,10 +58,6 @@ export function countWords(opts?: { cefr?: string; pos?: string; q?: string }): 
   if (opts?.pos) {
     where.push("w.part_of_speech = ?");
     params.push(opts.pos);
-  }
-  if (opts?.q) {
-    where.push("w.normalized_lemma LIKE ?");
-    params.push(`%${opts.q.toLowerCase()}%`);
   }
 
   const whereSql = where.length ? "WHERE " + where.join(" AND ") : "";
@@ -67,6 +71,7 @@ export function listWords(opts?: {
   cefr?: string;
   pos?: string;
   q?: string;
+  exact?: boolean;
   limit?: number;
   offset?: number;
 }): WordSummary[] {
@@ -74,6 +79,14 @@ export function listWords(opts?: {
   const where: string[] = [];
   const params: unknown[] = [];
 
+  if (opts?.q && opts?.exact) {
+    where.push("w.normalized_lemma = ?");
+    params.push(opts.q.toLowerCase());
+  } else if (opts?.q) {
+    const terms = opts.q.split(/\s+/).filter(Boolean).map((t) => t.toLowerCase() + "*").join(" AND ");
+    where.push("w.id IN (SELECT rowid FROM words_fts WHERE words_fts MATCH ?)");
+    params.push(terms);
+  }
   if (opts?.cefr) {
     where.push("w.cefr_level = ?");
     params.push(opts.cefr);
@@ -81,10 +94,6 @@ export function listWords(opts?: {
   if (opts?.pos) {
     where.push("w.part_of_speech = ?");
     params.push(opts.pos);
-  }
-  if (opts?.q) {
-    where.push("w.normalized_lemma LIKE ?");
-    params.push(`%${opts.q.toLowerCase()}%`);
   }
 
   const whereSql = where.length ? "WHERE " + where.join(" AND ") : "";

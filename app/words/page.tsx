@@ -16,13 +16,14 @@ const POS_LIST = [
   "Partikel",
   "Phrase",
 ];
+const PAGE_SIZE = 60;
 
 export const dynamic = "force-dynamic";
 
 function buildHref(params: Record<string, string | undefined>) {
   const sp = new URLSearchParams();
   for (const [k, v] of Object.entries(params)) {
-    if (v) sp.set(k, v);
+    if (v !== undefined && v !== "") sp.set(k, v);
   }
   const qs = sp.toString();
   return `/words${qs ? `?${qs}` : ""}`;
@@ -31,17 +32,25 @@ function buildHref(params: Record<string, string | undefined>) {
 export default async function WordsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ cefr?: string; pos?: string; q?: string }>;
+  searchParams: Promise<{ cefr?: string; pos?: string; q?: string; exact?: string; page?: string }>;
 }) {
   const sp = await searchParams;
   const cefr = sp.cefr && LEVELS.includes(sp.cefr) ? sp.cefr : undefined;
   const pos = sp.pos && POS_LIST.includes(sp.pos) ? sp.pos : undefined;
   const q = sp.q?.trim() || undefined;
+  const exact = sp.exact === "1";
+  const page = Math.max(1, Number(sp.page) || 1);
+  const offset = (page - 1) * PAGE_SIZE;
 
   const total = countWords({ cefr, pos, q });
-  const words = listWords({ cefr, pos, q, limit: 200 });
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const clampedPage = Math.min(page, totalPages);
+  const words = listWords({ cefr, pos, q, exact, limit: PAGE_SIZE, offset });
 
-  const filterParams = { cefr, pos };
+  const filterParams: Record<string, string | undefined> = { cefr, pos, exact: exact ? "1" : undefined };
+
+  const pageHref = (p: number) =>
+    buildHref({ ...filterParams, q, page: p > 1 ? String(p) : undefined });
 
   return (
     <div className="space-y-4">
@@ -54,13 +63,23 @@ export default async function WordsPage({
         </p>
       </div>
 
-      <form action="/words" method="get" className="flex gap-2">
+      <form action="/words" method="get" className="flex flex-wrap items-center gap-2">
         <input
           name="q"
           defaultValue={q ?? ""}
           placeholder="Search for a word…"
-          className="w-full max-w-sm rounded-lg border border-gray-300 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-900"
+          className="w-full max-w-xs rounded-lg border border-gray-300 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-900"
         />
+        <label className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400">
+          <input
+            type="checkbox"
+            name="exact"
+            value="1"
+            defaultChecked={exact}
+            className="h-3.5 w-3.5 rounded border-gray-300 text-blue-600"
+          />
+          Exact
+        </label>
         {cefr ? <input type="hidden" name="cefr" value={cefr} /> : null}
         {pos ? <input type="hidden" name="pos" value={pos} /> : null}
         <button
@@ -73,7 +92,7 @@ export default async function WordsPage({
 
       <div className="flex flex-wrap gap-2">
         <Link
-          href={buildHref({ q })}
+          href={buildHref({ q, exact: exact ? "1" : undefined })}
           className={`rounded-full px-3 py-1 text-xs ${
             !cefr && !pos
               ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
@@ -93,7 +112,7 @@ export default async function WordsPage({
           ) : (
             <Link
               key={l}
-              href={buildHref({ ...filterParams, cefr: l })}
+              href={buildHref({ ...filterParams, q, cefr: l })}
               className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
             >
               {l}
@@ -114,7 +133,7 @@ export default async function WordsPage({
           ) : (
             <Link
               key={p}
-              href={buildHref({ ...filterParams, pos: p })}
+              href={buildHref({ ...filterParams, q, pos: p })}
               className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
             >
               {p}
@@ -151,6 +170,36 @@ export default async function WordsPage({
         <p className="py-10 text-center text-gray-500 dark:text-gray-400">
           No words found.
         </p>
+      )}
+
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 pt-2">
+          <Link
+            href={pageHref(Math.max(1, clampedPage - 1))}
+            aria-disabled={clampedPage <= 1}
+            className={`rounded-lg border border-gray-200 px-3 py-1.5 text-sm ${
+              clampedPage <= 1
+                ? "pointer-events-none opacity-40 dark:border-gray-800"
+                : "text-gray-700 hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-800/50"
+            }`}
+          >
+            ← Prev
+          </Link>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Page {clampedPage} of {totalPages}
+          </span>
+          <Link
+            href={pageHref(Math.min(totalPages, clampedPage + 1))}
+            aria-disabled={clampedPage >= totalPages}
+            className={`rounded-lg border border-gray-200 px-3 py-1.5 text-sm ${
+              clampedPage >= totalPages
+                ? "pointer-events-none opacity-40 dark:border-gray-800"
+                : "text-gray-700 hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-800/50"
+            }`}
+          >
+            Next →
+          </Link>
+        </div>
       )}
     </div>
   );
