@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
-import { listWords } from "@/lib/vocab";
+import { listWords, countWords } from "@/lib/vocab";
 
 const LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 const POS_LIST = [
@@ -19,6 +19,15 @@ const POS_LIST = [
 
 export const dynamic = "force-dynamic";
 
+function buildHref(params: Record<string, string | undefined>) {
+  const sp = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) {
+    if (v) sp.set(k, v);
+  }
+  const qs = sp.toString();
+  return `/words${qs ? `?${qs}` : ""}`;
+}
+
 export default async function WordsPage({
   searchParams,
 }: {
@@ -29,14 +38,17 @@ export default async function WordsPage({
   const pos = sp.pos && POS_LIST.includes(sp.pos) ? sp.pos : undefined;
   const q = sp.q?.trim() || undefined;
 
+  const total = countWords({ cefr, pos, q });
   const words = listWords({ cefr, pos, q, limit: 200 });
+
+  const filterParams = { cefr, pos };
 
   return (
     <div className="space-y-4">
       <div>
         <h1 className="text-2xl font-bold">Browse</h1>
         <p className="mt-1 text-gray-600 dark:text-gray-400">
-          {words.length} words
+          {total} words
           {cefr ? ` · level ${cefr}` : ""}
           {pos ? ` · ${pos}` : ""}
         </p>
@@ -61,7 +73,7 @@ export default async function WordsPage({
 
       <div className="flex flex-wrap gap-2">
         <Link
-          href="/words"
+          href={buildHref({ q })}
           className={`rounded-full px-3 py-1 text-xs ${
             !cefr && !pos
               ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
@@ -70,14 +82,6 @@ export default async function WordsPage({
         >
           All
         </Link>
-        {cefr && (
-          <Link
-            href={`/words${pos ? `?pos=${pos}` : ""}`}
-            className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-          >
-            clear level
-          </Link>
-        )}
         {LEVELS.map((l) =>
           cefr === l ? (
             <span
@@ -89,10 +93,31 @@ export default async function WordsPage({
           ) : (
             <Link
               key={l}
-              href={`/words?cefr=${l}${pos ? `&pos=${pos}` : ""}`}
+              href={buildHref({ ...filterParams, cefr: l })}
               className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
             >
               {l}
+            </Link>
+          )
+        )}
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {POS_LIST.map((p) =>
+          pos === p ? (
+            <span
+              key={p}
+              className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white"
+            >
+              {p}
+            </span>
+          ) : (
+            <Link
+              key={p}
+              href={buildHref({ ...filterParams, pos: p })}
+              className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
+            >
+              {p}
             </Link>
           )
         )}

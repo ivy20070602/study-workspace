@@ -38,6 +38,31 @@ export function posLabel(pos: string): string {
   return pos;
 }
 
+export function countWords(opts?: { cefr?: string; pos?: string; q?: string }): number {
+  const db = getDb();
+  const where: string[] = [];
+  const params: unknown[] = [];
+
+  if (opts?.cefr) {
+    where.push("w.cefr_level = ?");
+    params.push(opts.cefr);
+  }
+  if (opts?.pos) {
+    where.push("w.part_of_speech = ?");
+    params.push(opts.pos);
+  }
+  if (opts?.q) {
+    where.push("w.normalized_lemma LIKE ?");
+    params.push(`%${opts.q.toLowerCase()}%`);
+  }
+
+  const whereSql = where.length ? "WHERE " + where.join(" AND ") : "";
+  const row = db
+    .prepare(`SELECT COUNT(*) AS c FROM words w ${whereSql}`)
+    .get(...params) as { c: number };
+  return Number(row.c);
+}
+
 export function listWords(opts?: {
   cefr?: string;
   pos?: string;
