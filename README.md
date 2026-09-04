@@ -39,9 +39,9 @@ npm run content:import       # words.jsonl -> SQLite (data/vocab.db), rebuilds F
 
 ## Features
 
-- **Browse** — 2,293 CEFR-tagged words with fuzzy full-text search (SQLite FTS5), exact-match toggle, and filters for CEFR level and part of speech. Paginated 60/page with prev/next controls.
-- **Word detail** — German-only definitions and examples per sense. Navigate between words within the same level with on-screen buttons or `←` / `→` arrow keys.
-- **Practice** — FSRS spaced repetition (`ts-fsrs`). Rate with on-screen buttons or keyboard (`Space` = reveal, `1–4` = grade). Filter sessions by CEFR level. Track an honest retention metric (share of reviews rated Good/Easy) plus per-level progress.
+- **Browse** — 2,293 CEFR-tagged words with fuzzy full-text search (SQLite FTS5), exact-match toggle, search inside German definitions/examples, and filters for CEFR level, part of speech, and bookmarks. Paginated 60/page with prev/next controls.
+- **Word detail** — German-only definitions and examples per sense. Navigate between words within the same level with on-screen buttons or `←` / `→` arrow keys. Hear the lemma spoken with the browser's native German voice (Web Speech API, no network). Bookmark words for later review.
+- **Practice** — FSRS spaced repetition (`ts-fsrs`). Rate with on-screen buttons or keyboard (`Space` = reveal, `1–4` = grade). Filter sessions by CEFR level or bookmarks. Per-card stats (reviews, lapses, stability), a "stubborn" flag for frequently lapsed words, a per-grade breakdown at session end, and an honest retention metric (share of reviews rated Good/Easy) plus per-level progress.
 - **Dark mode** — toggle persisted to `localStorage`, respects system preference, no FOUC.
 
 

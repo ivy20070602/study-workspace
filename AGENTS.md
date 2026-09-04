@@ -28,8 +28,10 @@ Self-use German vocabulary learning website. English UI; German-only definitions
 - Word IDs in DB are not contiguous from 1 (restart at ~5675 after re-imports); don't assume id 1 exists.
 
 ## Where things are
-- `lib/vocab.ts` — query layer: `listWords`, `countWords` (cefr/pos/q/exact/limit/offset), `getWordById`, `getAdjacentWords` (within-level), `getRandomWordWithDefinition`, `getOverview`.
-- `lib/practice.ts` — FSRS session/queries; `getStatsByLevel`, `getRecentReviews`, retention (Good/Easy share).
+- `lib/vocab.ts` — query layer: `listWords`, `countWords` (cefr/pos/q/exact/scope∈{lemma,definition}/bookmarked/limit/offset), `getWordById`, `getAdjacentWords` (within-level), `getRandomWordWithDefinition`, `getOverview`.
+- `lib/practice.ts` — FSRS session/queries; `getNextSession(due, new, level?, now?, bookmarked?)`, `countDue`/`countNew` (level?, bookmarked?), `getStatsByLevel`, `getRecentReviews`, retention (Good/Easy share), `getPracticeOverview`.
+- `lib/bookmarks.ts` — bookmarks keyed by `normalized_lemma` (stable across re-imports, unlike word IDs); survive `--wipe-progress`.
+- `components/` — `PracticeSession`, `SpeakButton` (native speechSynthesis de-DE, client-only), `BookmarkToggle`, `Highlight`, `WordNavKeys`, `DarkModeToggle`, `ui/Card`.
 - `scripts/content/` — data pipeline (fetch-goethe, assign-b2c2, extract-wiktionary, import-db).
 - `docs/DATA_SOURCES.md` — source research and decisions.
 

@@ -21,10 +21,12 @@ export function PracticeSession({
   cards: initial,
   totalDue,
   level,
+  bookmarked = false,
 }: {
   cards: PracticeCard[];
   totalDue: number;
   level?: string;
+  bookmarked?: boolean;
 }) {
   const [queue, setQueue] = useState<PracticeCard[]>(initial);
   const [revealed, setRevealed] = useState(false);
@@ -37,7 +39,10 @@ export function PracticeSession({
 
   const loadMore = useCallback(async () => {
     try {
-      const url = level ? `/api/practice?level=${level}` : "/api/practice";
+      const sp = new URLSearchParams();
+      if (level) sp.set("level", level);
+      if (bookmarked) sp.set("bookmarked", "1");
+      const url = `/api/practice${sp.size ? `?${sp.toString()}` : ""}`;
       const res = await fetch(url);
       const data = (await res.json()) as { cards: PracticeCard[] };
       if (data.cards.length === 0) {
@@ -48,7 +53,7 @@ export function PracticeSession({
     } catch {
       setError("Could not load more cards.");
     }
-  }, [level]);
+  }, [level, bookmarked]);
 
   const rate = useCallback(
     async (rating: Rating) => {

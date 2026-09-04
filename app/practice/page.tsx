@@ -21,14 +21,19 @@ const RATING_COLOR: Record<number, string> = {
 export default async function PracticePage({
   searchParams,
 }: {
-  searchParams: Promise<{ level?: string }>;
+  searchParams: Promise<{ level?: string; bookmarked?: string }>;
 }) {
   const sp = await searchParams;
   const level = sp.level && LEVELS.includes(sp.level) ? sp.level : undefined;
+  const bookmarked = sp.bookmarked === "1";
   const overview = getPracticeOverview();
-  const session = getNextSession(20, 10, level);
+  const session = getNextSession(20, 10, level, new Date(), bookmarked);
   const recent = getRecentReviews(15);
   const byLevel = getStatsByLevel();
+
+  const due = level ? countDue(level, new Date(), bookmarked) : overview.due;
+  const fresh = level ? countNew(level, bookmarked) : overview.newCards;
+  const toReview = due + fresh;
 
   return (
     <div className="space-y-6">
@@ -43,7 +48,7 @@ export default async function PracticePage({
         <Link
           href="/practice"
           className={`rounded-full px-3 py-1 text-xs ${
-            !level
+            !level && !bookmarked
               ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
               : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
           }`}
@@ -68,12 +73,24 @@ export default async function PracticePage({
             </Link>
           )
         )}
+        {bookmarked ? (
+          <span className="rounded-full bg-amber-500 px-3 py-1 text-xs font-medium text-white">
+            Bookmarked
+          </span>
+        ) : (
+          <Link
+            href="/practice?bookmarked=1"
+            className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
+          >
+            Bookmarked
+          </Link>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <Stat label="Due" value={level ? countDue(level) : overview.due} />
-        <Stat label="New" value={level ? countNew(level) : overview.newCards} />
-        <Stat label="To review" value={(level ? countDue(level) : overview.due) + (level ? countNew(level) : overview.newCards)} />
+        <Stat label="Due" value={due} />
+        <Stat label="New" value={fresh} />
+        <Stat label="To review" value={toReview} />
         <Stat
           label="Reviews done"
           value={overview.retention !== null ? `${overview.retention}%` : overview.reviewsDone}
@@ -81,7 +98,7 @@ export default async function PracticePage({
         />
       </div>
 
-      <PracticeSession cards={session} totalDue={(level ? countDue(level) : overview.due) + (level ? countNew(level) : overview.newCards)} level={level} />
+      <PracticeSession cards={session} totalDue={toReview} level={level} bookmarked={bookmarked} />
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
         <span className="font-medium text-gray-600 dark:text-gray-300">Shortcuts</span>

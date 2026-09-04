@@ -12,7 +12,14 @@ const LEVELS = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const level = url.searchParams.get("level");
-  const cards = getNextSession(20, 10, level && LEVELS.has(level) ? level : undefined);
+  const bookmarked = url.searchParams.get("bookmarked") === "1";
+  const cards = getNextSession(
+    20,
+    10,
+    level && LEVELS.has(level) ? level : undefined,
+    new Date(),
+    bookmarked
+  );
   return NextResponse.json({ cards });
 }
 

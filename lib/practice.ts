@@ -54,26 +54,32 @@ interface WordRow {
   cefr_level: string;
 }
 
-export function countDue(level?: string, now: Date = new Date()): number {
+function bookmarkFilter(bookmarked?: boolean): string {
+  return bookmarked
+    ? "AND w.normalized_lemma IN (SELECT normalized_lemma FROM bookmarks)"
+    : "";
+}
+
+export function countDue(level?: string, now: Date = new Date(), bookmarked = false): number {
   const db = getDb();
-  const where = level ? "AND w.cefr_level = ?" : "";
-  const params = level ? [now.toISOString(), level] : [now.toISOString()];
+  const levelWhere = level ? "AND w.cefr_level = ?" : "";
+  const params = [now.toISOString(), ...(level ? [level] : [])];
   const row = db
-    .prepare(`SELECT COUNT(*) AS c FROM cards c JOIN words w ON w.id = c.word_id WHERE c.due <= ? ${where}`)
+    .prepare(`SELECT COUNT(*) AS c FROM cards c JOIN words w ON w.id = c.word_id WHERE c.due <= ? ${levelWhere} ${bookmarkFilter(bookmarked)}`)
     .get(...params) as { c: number };
   return Number(row.c);
 }
 
-export function countNew(level?: string): number {
+export function countNew(level?: string, bookmarked = false): number {
   const db = getDb();
-  const where = level ? "AND w.cefr_level = ?" : "";
+  const levelWhere = level ? "AND w.cefr_level = ?" : "";
   const params = level ? [level] : [];
   const row = db
     .prepare(
       `SELECT COUNT(*) AS c FROM words w
        WHERE NOT EXISTS (SELECT 1 FROM cards c WHERE c.word_id = w.id)
        AND EXISTS (SELECT 1 FROM word_senses s WHERE s.word_id = w.id)
-       ${where}`
+       ${levelWhere} ${bookmarkFilter(bookmarked)}`
     )
     .get(...params) as { c: number };
   return Number(row.c);
@@ -92,7 +98,7 @@ function toPracticeCards(rows: WordRow[]): PracticeCard[] {
   });
 }
 
-export function getNextSession(dueLimit: number, newLimit: number, level?: string, now: Date = new Date()): PracticeCard[] {
+export function getNextSession(dueLimit: number, newLimit: number, level?: string, now: Date = new Date(), bookmarked = false): PracticeCard[] {
   const db = getDb();
   const session: PracticeCard[] = [];
   const levelWhere = level ? "AND w.cefr_level = ?" : "";
@@ -102,7 +108,7 @@ export function getNextSession(dueLimit: number, newLimit: number, level?: strin
     .prepare(
       `SELECT w.id, w.lemma, w.article, w.part_of_speech, w.cefr_level
        FROM words w JOIN cards c ON c.word_id = w.id
-       WHERE c.due <= ? ${levelWhere}
+       WHERE c.due <= ? ${levelWhere} ${bookmarkFilter(bookmarked)}
        ORDER BY c.due ASC
        LIMIT ?`
     )
@@ -117,7 +123,7 @@ export function getNextSession(dueLimit: number, newLimit: number, level?: strin
          FROM words w
          WHERE NOT EXISTS (SELECT 1 FROM cards c WHERE c.word_id = w.id)
          AND EXISTS (SELECT 1 FROM word_senses s WHERE s.word_id = w.id)
-         ${levelWhere}
+         ${levelWhere} ${bookmarkFilter(bookmarked)}
          ORDER BY w.id
          LIMIT ?`
       )
