@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
+import { WordNavKeys } from "@/components/WordNavKeys";
 import { getWordById, getAdjacentWords } from "@/lib/vocab";
 
 export const dynamic = "force-dynamic";
@@ -16,10 +17,11 @@ export default async function WordDetailPage({
     notFound();
   }
 
-  const { prev, next } = getAdjacentWords(word.id);
+  const { prev, next } = getAdjacentWords(word.id, word.cefr_level);
 
   return (
     <div className="space-y-5">
+      <WordNavKeys prevId={prev?.id ?? null} nextId={next?.id ?? null} />
       <Link
         href="/words"
         className="text-sm text-blue-600 hover:underline dark:text-blue-400"
@@ -40,9 +42,17 @@ export default async function WordDetailPage({
             <span>{word.sense_count} sense{word.sense_count === 1 ? "" : "s"}</span>
           </div>
         </div>
-        <span className="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-          {word.cefr_level}
-        </span>
+        <div className="flex flex-col items-end gap-1.5">
+          <Link
+            href={`/words?cefr=${word.cefr_level}`}
+            className="rounded bg-blue-100 px-2 py-1 text-sm font-medium text-blue-700 transition hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800"
+          >
+            {word.cefr_level}
+          </Link>
+          <span className="text-xs text-gray-400">
+            {word.article && word.part_of_speech === "Nomen" ? "Noun" : word.part_of_speech}
+          </span>
+        </div>
       </div>
 
       <div className="space-y-3">
@@ -98,6 +108,9 @@ export default async function WordDetailPage({
           <span />
         )}
       </div>
+      <p className="text-center text-xs text-gray-400">
+        Use ← → arrow keys to navigate within this level
+      </p>
     </div>
   );
 }
