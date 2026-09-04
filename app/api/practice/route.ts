@@ -7,9 +7,12 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const VALID = new Set([Rating.Again, Rating.Hard, Rating.Good, Rating.Easy]);
+const LEVELS = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
 
-export async function GET() {
-  const cards = getNextSession(20, 10);
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  const level = url.searchParams.get("level");
+  const cards = getNextSession(20, 10, level && LEVELS.has(level) ? level : undefined);
   return NextResponse.json({ cards });
 }
 

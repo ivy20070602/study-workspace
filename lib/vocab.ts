@@ -151,6 +151,65 @@ export function getWordById(id: number): WordDetail | null {
   return { ...w, sense_count: Number(w.sense_count), senses: senseRows };
 }
 
+export interface AdjacentWord {
+  id: number;
+  lemma: string;
+}
+
+export function getAdjacentWords(id: number, cefr?: string): { prev: AdjacentWord | null; next: AdjacentWord | null } {
+  const db = getDb();
+  const where = cefr ? "AND w.cefr_level = ?" : "";
+
+  const prev = db
+    .prepare(
+      `SELECT w.id, w.lemma FROM words w
+       WHERE w.id < ? ${where}
+       ORDER BY w.id DESC LIMIT 1`
+    )
+    .get(...(cefr ? [id, cefr] : [id])) as { id: number; lemma: string } | undefined;
+
+  const next = db
+    .prepare(
+      `SELECT w.id, w.lemma FROM words w
+       WHERE w.id > ? ${where}
+       ORDER BY w.id ASC LIMIT 1`
+    )
+    .get(...(cefr ? [id, cefr] : [id])) as { id: number; lemma: string } | undefined;
+
+  return { prev: prev ?? null, next: next ?? null };
+}
+
+export function getRandomWord(): WordSummary | null {
+  const db = getDb();
+  const row = db
+    .prepare(
+      `SELECT w.id, w.lemma, w.part_of_speech, w.cefr_level, w.article,
+              (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count
+       FROM words w
+       ORDER BY RANDOM() LIMIT 1`
+    )
+    .get() as
+    | { id: number; lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number }
+    | undefined;
+  return row ? { ...row, sense_count: Number(row.sense_count) } : null;
+}
+
+export function getRandomWordWithDefinition(): (WordSummary & { definition: string }) | null {
+  const db = getDb();
+  const row = db
+    .prepare(
+      `SELECT w.id, w.lemma, w.part_of_speech, w.cefr_level, w.article,
+              (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count,
+              (SELECT s.definition FROM word_senses s WHERE s.word_id = w.id ORDER BY s.sense_number LIMIT 1) AS definition
+       FROM words w
+       ORDER BY RANDOM() LIMIT 1`
+    )
+    .get() as
+    | { id: number; lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number; definition: string }
+    | undefined;
+  return row ? { ...row, sense_count: Number(row.sense_count) } : null;
+}
+
 export interface Overview {
   totalWords: number;
   totalSenses: number;

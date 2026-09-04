@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
-import { getOverview } from "@/lib/vocab";
+import { getOverview, getRandomWordWithDefinition } from "@/lib/vocab";
 import { countDue, countNew } from "@/lib/practice";
+
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
   const overview = getOverview();
   const due = countDue();
   const newCards = countNew();
+  const randomWord = getRandomWordWithDefinition();
   const totalMax = Math.max(...overview.byCefr.map((c) => c.count), 1);
   const levelColors: Record<string, string> = {
     A1: "bg-emerald-500",
@@ -48,6 +51,31 @@ export default function HomePage() {
           </Card>
         </Link>
       </div>
+
+      {randomWord && (
+        <Link href={`/words/${randomWord.id}`}>
+          <Card className="cursor-pointer transition hover:-translate-y-0.5 hover:shadow-md">
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">Word of the moment</div>
+                  <div className="mt-1 text-xl font-bold">
+                    {randomWord.article && randomWord.part_of_speech === "Nomen"
+                      ? `${randomWord.article} ${randomWord.lemma}`
+                      : randomWord.lemma}
+                  </div>
+                  <div className="mt-0.5 text-sm text-gray-600 dark:text-gray-400">
+                    {randomWord.definition}
+                  </div>
+                </div>
+                <span className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+                  {randomWord.cefr_level}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+      )}
 
       <Card>
         <CardContent>

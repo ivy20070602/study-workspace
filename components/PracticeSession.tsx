@@ -14,9 +14,11 @@ const GRADES = [
 export function PracticeSession({
   cards: initial,
   totalDue,
+  level,
 }: {
   cards: PracticeCard[];
   totalDue: number;
+  level?: string;
 }) {
   const [queue, setQueue] = useState<PracticeCard[]>(initial);
   const [revealed, setRevealed] = useState(false);
@@ -28,7 +30,8 @@ export function PracticeSession({
 
   const loadMore = useCallback(async () => {
     try {
-      const res = await fetch("/api/practice");
+      const url = level ? `/api/practice?level=${level}` : "/api/practice";
+      const res = await fetch(url);
       const data = (await res.json()) as { cards: PracticeCard[] };
       if (data.cards.length === 0) {
         setQueue([]);
@@ -38,7 +41,7 @@ export function PracticeSession({
     } catch {
       setError("Could not load more cards.");
     }
-  }, []);
+  }, [level]);
 
   const rate = useCallback(
     async (rating: Rating) => {

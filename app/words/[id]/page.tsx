@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
-import { getWordById } from "@/lib/vocab";
+import { getWordById, getAdjacentWords } from "@/lib/vocab";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +15,8 @@ export default async function WordDetailPage({
   if (!word) {
     notFound();
   }
+
+  const { prev, next } = getAdjacentWords(word.id);
 
   return (
     <div className="space-y-5">
@@ -32,8 +34,10 @@ export default async function WordDetailPage({
               ? `${word.article} ${word.lemma}`
               : word.lemma}
           </h1>
-          <div className="mt-1 text-gray-600 dark:text-gray-400">
-            {word.part_of_speech}
+          <div className="mt-1 flex items-center gap-2 text-gray-600 dark:text-gray-400">
+            <span>{word.part_of_speech}</span>
+            <span className="text-gray-300 dark:text-gray-600">·</span>
+            <span>{word.sense_count} sense{word.sense_count === 1 ? "" : "s"}</span>
           </div>
         </div>
         <span className="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
@@ -70,6 +74,29 @@ export default async function WordDetailPage({
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      <div className="flex items-center justify-between pt-2">
+        {prev ? (
+          <Link
+            href={`/words/${prev.id}`}
+            className="rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-800/50"
+          >
+            ← {prev.lemma}
+          </Link>
+        ) : (
+          <span />
+        )}
+        {next ? (
+          <Link
+            href={`/words/${next.id}`}
+            className="rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-800/50"
+          >
+            {next.lemma} →
+          </Link>
+        ) : (
+          <span />
+        )}
       </div>
     </div>
   );

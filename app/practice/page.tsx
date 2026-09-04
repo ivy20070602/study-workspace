@@ -1,8 +1,10 @@
-import { getNextSession, getPracticeOverview, getRecentReviews, getStatsByLevel } from "@/lib/practice";
+import Link from "next/link";
+import { getNextSession, getPracticeOverview, getRecentReviews, getStatsByLevel, countDue, countNew } from "@/lib/practice";
 import { PracticeSession } from "@/components/PracticeSession";
 
 export const dynamic = "force-dynamic";
 
+const LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 const RATING_LABEL: Record<number, string> = {
   1: "Again",
   2: "Hard",
@@ -16,9 +18,15 @@ const RATING_COLOR: Record<number, string> = {
   4: "text-emerald-600",
 };
 
-export default function PracticePage() {
+export default async function PracticePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ level?: string }>;
+}) {
+  const sp = await searchParams;
+  const level = sp.level && LEVELS.includes(sp.level) ? sp.level : undefined;
   const overview = getPracticeOverview();
-  const session = getNextSession(20, 10);
+  const session = getNextSession(20, 10, level);
   const recent = getRecentReviews(15);
   const byLevel = getStatsByLevel();
 
@@ -31,14 +39,45 @@ export default function PracticePage() {
         </p>
       </div>
 
+      <div className="flex flex-wrap gap-2">
+        <Link
+          href="/practice"
+          className={`rounded-full px-3 py-1 text-xs ${
+            !level
+              ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
+              : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+          }`}
+        >
+          All levels
+        </Link>
+        {LEVELS.map((l) =>
+          level === l ? (
+            <span
+              key={l}
+              className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white"
+            >
+              {l}
+            </span>
+          ) : (
+            <Link
+              key={l}
+              href={`/practice?level=${l}`}
+              className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
+            >
+              {l}
+            </Link>
+          )
+        )}
+      </div>
+
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <Stat label="Due" value={overview.due} />
-        <Stat label="New" value={overview.newCards} />
-        <Stat label="To review" value={overview.dueNew} />
+        <Stat label="Due" value={level ? countDue(level) : overview.due} />
+        <Stat label="New" value={level ? countNew(level) : overview.newCards} />
+        <Stat label="To review" value={(level ? countDue(level) : overview.due) + (level ? countNew(level) : overview.newCards)} />
         <Stat label="Reviews done" value={overview.reviewsDone} />
       </div>
 
-      <PracticeSession cards={session} totalDue={overview.dueNew} />
+      <PracticeSession cards={session} totalDue={(level ? countDue(level) : overview.due) + (level ? countNew(level) : overview.newCards)} level={level} />
 
       <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
         <h2 className="mb-3 text-base font-semibold">Progress by level</h2>
