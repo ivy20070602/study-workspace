@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
+import { BookmarkToggle } from "@/components/BookmarkToggle";
 import { SpeakButton } from "@/components/SpeakButton";
 import { WordNavKeys } from "@/components/WordNavKeys";
 import { getWordById, getAdjacentWords } from "@/lib/vocab";
+import { isBookmarked } from "@/lib/bookmarks";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +21,7 @@ export default async function WordDetailPage({
   }
 
   const { prev, next } = getAdjacentWords(word.id, word.cefr_level);
+  const bookmarked = isBookmarked(word.normalized_lemma);
 
   return (
     <div className="space-y-5">
@@ -40,6 +43,7 @@ export default async function WordDetailPage({
               text={word.lemma}
               className="-ml-1"
             />
+            <BookmarkToggle lemma={word.normalized_lemma} initial={bookmarked} />
           </h1>
           <div className="mt-1 flex items-center gap-2 text-gray-600 dark:text-gray-400">
             <span>{word.part_of_speech}</span>

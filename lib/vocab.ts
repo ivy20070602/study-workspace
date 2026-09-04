@@ -3,6 +3,7 @@ import { getDb } from "./db";
 export interface WordSummary {
   id: number;
   lemma: string;
+  normalized_lemma: string;
   part_of_speech: string;
   cefr_level: string;
   article: string | null;
@@ -34,11 +35,13 @@ const POS_ORDER: Record<string, number> = {
   Phrase: 10,
 };
 
+const BOOKMARK_FILTER = "EXISTS (SELECT 1 FROM bookmarks b WHERE b.normalized_lemma = w.normalized_lemma)";
+
 export function posLabel(pos: string): string {
   return pos;
 }
 
-export function countWords(opts?: { cefr?: string; pos?: string; q?: string; exact?: boolean }): number {
+export function countWords(opts?: { cefr?: string; pos?: string; q?: string; exact?: boolean; bookmarked?: boolean }): number {
   const db = getDb();
   const where: string[] = [];
   const params: unknown[] = [];
@@ -59,6 +62,9 @@ export function countWords(opts?: { cefr?: string; pos?: string; q?: string; exa
     where.push("w.part_of_speech = ?");
     params.push(opts.pos);
   }
+  if (opts?.bookmarked) {
+    where.push(BOOKMARK_FILTER);
+  }
 
   const whereSql = where.length ? "WHERE " + where.join(" AND ") : "";
   const row = db
@@ -72,6 +78,7 @@ export function listWords(opts?: {
   pos?: string;
   q?: string;
   exact?: boolean;
+  bookmarked?: boolean;
   limit?: number;
   offset?: number;
 }): WordSummary[] {
@@ -95,6 +102,9 @@ export function listWords(opts?: {
     where.push("w.part_of_speech = ?");
     params.push(opts.pos);
   }
+  if (opts?.bookmarked) {
+    where.push(BOOKMARK_FILTER);
+  }
 
   const whereSql = where.length ? "WHERE " + where.join(" AND ") : "";
   const limit = opts?.limit ?? 100;
@@ -103,7 +113,7 @@ export function listWords(opts?: {
 
   const rows = db
     .prepare(
-      `SELECT w.id, w.lemma, w.part_of_speech, w.cefr_level, w.article,
+      `SELECT w.id, w.lemma, w.normalized_lemma, w.part_of_speech, w.cefr_level, w.article,
               (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count
        FROM words w
        ${whereSql}
@@ -113,6 +123,7 @@ export function listWords(opts?: {
     .all(...params) as Array<{
     id: number;
     lemma: string;
+    normalized_lemma: string;
     part_of_speech: string;
     cefr_level: string;
     article: string | null;
@@ -129,12 +140,12 @@ export function getWordById(id: number): WordDetail | null {
   const db = getDb();
   const w = db
     .prepare(
-      `SELECT w.id, w.lemma, w.part_of_speech, w.cefr_level, w.article,
+      `SELECT w.id, w.lemma, w.normalized_lemma, w.part_of_speech, w.cefr_level, w.article,
               (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count
        FROM words w WHERE w.id = ?`
     )
     .get(id) as
-    | { id: number; lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number }
+    | { id: number; lemma: string; normalized_lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number }
     | undefined;
   if (!w) return null;
 
@@ -192,13 +203,13 @@ export function getRandomWord(): WordSummary | null {
   const db = getDb();
   const row = db
     .prepare(
-      `SELECT w.id, w.lemma, w.part_of_speech, w.cefr_level, w.article,
+      `SELECT w.id, w.lemma, w.normalized_lemma, w.part_of_speech, w.cefr_level, w.article,
               (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count
        FROM words w
        ORDER BY RANDOM() LIMIT 1`
     )
     .get() as
-    | { id: number; lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number }
+    | { id: number; lemma: string; normalized_lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number }
     | undefined;
   return row ? { ...row, sense_count: Number(row.sense_count) } : null;
 }
@@ -207,14 +218,14 @@ export function getRandomWordWithDefinition(): (WordSummary & { definition: stri
   const db = getDb();
   const row = db
     .prepare(
-      `SELECT w.id, w.lemma, w.part_of_speech, w.cefr_level, w.article,
+      `SELECT w.id, w.lemma, w.normalized_lemma, w.part_of_speech, w.cefr_level, w.article,
               (SELECT COUNT(*) FROM word_senses s WHERE s.word_id = w.id) AS sense_count,
               (SELECT s.definition FROM word_senses s WHERE s.word_id = w.id ORDER BY s.sense_number LIMIT 1) AS definition
        FROM words w
        ORDER BY RANDOM() LIMIT 1`
     )
     .get() as
-    | { id: number; lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number; definition: string }
+    | { id: number; lemma: string; normalized_lemma: string; part_of_speech: string; cefr_level: string; article: string | null; sense_count: number; definition: string }
     | undefined;
   return row ? { ...row, sense_count: Number(row.sense_count) } : null;
 }

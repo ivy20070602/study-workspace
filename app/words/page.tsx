@@ -33,22 +33,28 @@ function buildHref(params: Record<string, string | undefined>) {
 export default async function WordsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ cefr?: string; pos?: string; q?: string; exact?: string; page?: string }>;
+  searchParams: Promise<{ cefr?: string; pos?: string; q?: string; exact?: string; bookmarked?: string; page?: string }>;
 }) {
   const sp = await searchParams;
   const cefr = sp.cefr && LEVELS.includes(sp.cefr) ? sp.cefr : undefined;
   const pos = sp.pos && POS_LIST.includes(sp.pos) ? sp.pos : undefined;
   const q = sp.q?.trim() || undefined;
   const exact = sp.exact === "1";
+  const bookmarked = sp.bookmarked === "1";
   const page = Math.max(1, Number(sp.page) || 1);
   const offset = (page - 1) * PAGE_SIZE;
 
-  const total = countWords({ cefr, pos, q });
+  const total = countWords({ cefr, pos, q, bookmarked });
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const clampedPage = Math.min(page, totalPages);
-  const words = listWords({ cefr, pos, q, exact, limit: PAGE_SIZE, offset });
+  const words = listWords({ cefr, pos, q, exact, bookmarked, limit: PAGE_SIZE, offset });
 
-  const filterParams: Record<string, string | undefined> = { cefr, pos, exact: exact ? "1" : undefined };
+  const filterParams: Record<string, string | undefined> = {
+    cefr,
+    pos,
+    exact: exact ? "1" : undefined,
+    bookmarked: bookmarked ? "1" : undefined,
+  };
 
   const pageHref = (p: number) =>
     buildHref({ ...filterParams, q, page: p > 1 ? String(p) : undefined });
@@ -61,6 +67,7 @@ export default async function WordsPage({
           {total} words
           {cefr ? ` · level ${cefr}` : ""}
           {pos ? ` · ${pos}` : ""}
+          {bookmarked ? " · bookmarked" : ""}
         </p>
       </div>
 
@@ -83,6 +90,7 @@ export default async function WordsPage({
         </label>
         {cefr ? <input type="hidden" name="cefr" value={cefr} /> : null}
         {pos ? <input type="hidden" name="pos" value={pos} /> : null}
+        {bookmarked ? <input type="hidden" name="bookmarked" value="1" /> : null}
         <button
           type="submit"
           className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
@@ -95,7 +103,7 @@ export default async function WordsPage({
         <Link
           href={buildHref({ q, exact: exact ? "1" : undefined })}
           className={`rounded-full px-3 py-1 text-xs ${
-            !cefr && !pos
+            !cefr && !pos && !bookmarked
               ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
               : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
           }`}
@@ -119,6 +127,18 @@ export default async function WordsPage({
               {l}
             </Link>
           )
+        )}
+        {bookmarked ? (
+          <span className="rounded-full bg-amber-500 px-3 py-1 text-xs font-medium text-white">
+            Bookmarked
+          </span>
+        ) : (
+          <Link
+            href={buildHref({ ...filterParams, q, bookmarked: "1" })}
+            className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
+          >
+            Bookmarked
+          </Link>
         )}
       </div>
 

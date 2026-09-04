@@ -80,6 +80,11 @@ function initTables(db: Database.Database) {
       INSERT INTO words_fts(rowid, lemma, normalized_lemma) VALUES (new.id, new.lemma, new.normalized_lemma);
     END;
 
+    CREATE TABLE IF NOT EXISTS bookmarks (
+      normalized_lemma TEXT PRIMARY KEY,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+
     CREATE TABLE IF NOT EXISTS cards (
       word_id INTEGER PRIMARY KEY REFERENCES words(id) ON DELETE CASCADE,
       state INTEGER NOT NULL DEFAULT 0,
