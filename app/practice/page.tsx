@@ -83,6 +83,12 @@ export default async function PracticePage({
 
       <PracticeSession cards={session} totalDue={(level ? countDue(level) : overview.due) + (level ? countNew(level) : overview.newCards)} level={level} />
 
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+        <span className="font-medium text-gray-600 dark:text-gray-300">Shortcuts</span>
+        <span className="flex items-center gap-1.5"><kbd className="rounded border border-gray-300 px-1.5 py-0.5 font-mono dark:border-gray-700">Space</kbd> reveal answer</span>
+        <span className="flex items-center gap-1.5"><kbd className="rounded border border-gray-300 px-1.5 py-0.5 font-mono dark:border-gray-700">1</kbd><kbd className="rounded border border-gray-300 px-1.5 py-0.5 font-mono dark:border-gray-700">2</kbd><kbd className="rounded border border-gray-300 px-1.5 py-0.5 font-mono dark:border-gray-700">3</kbd><kbd className="rounded border border-gray-300 px-1.5 py-0.5 font-mono dark:border-gray-700">4</kbd> grade (Again/Hard/Good/Easy)</span>
+      </div>
+
       <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
         <h2 className="mb-3 text-base font-semibold">Progress by level</h2>
         <div className="space-y-2">

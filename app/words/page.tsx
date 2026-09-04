@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
+import { Highlight } from "@/components/Highlight";
 import { listWords, countWords } from "@/lib/vocab";
 
 const LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
@@ -149,9 +150,14 @@ export default async function WordsPage({
               <CardContent className="flex items-center justify-between">
                 <div>
                   <div className="font-semibold">
-                    {w.article && w.part_of_speech === "Nomen"
-                      ? `${w.article} ${w.lemma}`
-                      : w.lemma}
+                    <Highlight
+                      text={
+                        w.article && w.part_of_speech === "Nomen"
+                          ? `${w.article} ${w.lemma}`
+                          : w.lemma
+                      }
+                      query={q}
+                    />
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">
                     {w.part_of_speech}
