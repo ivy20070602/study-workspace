@@ -31,6 +31,7 @@ export function PracticeSession({
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [gradeCounts, setGradeCounts] = useState<Record<number, number>>({});
 
   const current = queue[0];
 
@@ -62,6 +63,7 @@ export function PracticeSession({
         });
         if (!res.ok) throw new Error("submit failed");
         setDone((d) => d + 1);
+        setGradeCounts((g) => ({ ...g, [rating]: (g[rating] ?? 0) + 1 }));
         setRevealed(false);
         setQueue((q) => {
           const remaining = q.slice(1);
@@ -104,6 +106,9 @@ export function PracticeSession({
   }, [handleKey]);
 
   if (!current) {
+    const counts = GRADES.map((g) => ({ ...g, count: gradeCounts[g.rating] ?? 0 })).filter(
+      (g) => g.count > 0
+    );
     return (
       <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center dark:border-gray-800 dark:bg-gray-900">
         <div className="text-2xl font-bold">
@@ -114,6 +119,18 @@ export function PracticeSession({
             ? `You reviewed ${done} card${done === 1 ? "" : "s"} this session.`
             : "There are no cards due right now."}
         </p>
+        {counts.length > 0 && (
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {counts.map((g) => (
+              <span
+                key={g.rating}
+                className={`rounded-lg px-3 py-1.5 text-sm font-medium text-white ${g.cls}`}
+              >
+                {g.label}: {g.count}
+              </span>
+            ))}
+          </div>
+        )}
         {totalDue > 0 && (
           <button
             onClick={() => loadMore()}
