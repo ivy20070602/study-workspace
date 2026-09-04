@@ -105,6 +105,7 @@ function initTables(db: Database.Database) {
 
     CREATE INDEX IF NOT EXISTS idx_cards_due ON cards(due);
     CREATE INDEX IF NOT EXISTS idx_review_logs_word ON review_logs(word_id);
+    CREATE INDEX IF NOT EXISTS idx_review_logs_reviewed ON review_logs(reviewed_at);
   `);
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import type { PracticeCard } from "@/lib/practice";
 import { Rating } from "ts-fsrs";
 
@@ -10,6 +11,10 @@ const GRADES = [
   { rating: Rating.Good, label: "Good", key: "3", cls: "bg-blue-600 hover:bg-blue-700" },
   { rating: Rating.Easy, label: "Easy", key: "4", cls: "bg-emerald-600 hover:bg-emerald-700" },
 ];
+
+// Cards that have lapsed many times are flagged as "stubborn" — a gentle
+// signal to pay extra attention, not a punishment.
+const STUBBORN_THRESHOLD = 3;
 
 export function PracticeSession({
   cards: initial,
@@ -134,7 +139,29 @@ export function PracticeSession({
       </div>
 
       <div className="rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-900">
-        <div className="text-center text-3xl font-bold">{displayLemma}</div>
+        <div className="flex items-start justify-center gap-3">
+          <Link
+            href={`/words/${current.word.word_id}`}
+            className="text-center text-3xl font-bold hover:text-blue-600 dark:hover:text-blue-400"
+            title="View full entry"
+          >
+            {displayLemma}
+          </Link>
+          {current.card && current.card.lapses >= STUBBORN_THRESHOLD && (
+            <span className="mt-1 rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900 dark:text-amber-300">
+              stubborn
+            </span>
+          )}
+        </div>
+
+        {current.card && (
+          <div className="mt-1 text-center text-xs text-gray-400 dark:text-gray-500">
+            {current.card.reps > 0 && `${current.card.reps} reviews`}
+            {current.card.lapses > 0 && ` · ${current.card.lapses} lapses`}
+            {current.card.stability > 0 &&
+              ` · stability ${current.card.stability.toFixed(1)}d`}
+          </div>
+        )}
 
         {!revealed ? (
           <div className="mt-8 text-center">
