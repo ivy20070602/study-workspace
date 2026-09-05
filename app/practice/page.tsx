@@ -131,9 +131,21 @@ export default async function PracticePage({
         </div>
       </div>
 
-      {recent.length > 0 && (
-        <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="mb-3 text-base font-semibold">Recent reviews</h2>
+      <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-base font-semibold">Recent reviews</h2>
+          <a
+            href="/api/export/reviews"
+            className="text-xs text-blue-600 hover:underline dark:text-blue-400"
+          >
+            Export history (CSV)
+          </a>
+        </div>
+        {recent.length === 0 ? (
+          <p className="py-4 text-center text-sm text-gray-500 dark:text-gray-400">
+            No reviews yet. Start practicing to build history here.
+          </p>
+        ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -172,8 +184,8 @@ export default async function PracticePage({
               </tbody>
             </table>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
