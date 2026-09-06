@@ -276,6 +276,27 @@ export function getReviewHistory(): ReviewLog[] {
     .all() as ReviewLog[];
 }
 
+export interface UpcomingReview {
+  word_id: number;
+  lemma: string;
+  cefr_level: string;
+  due: string;
+}
+
+export function getUpcomingReviews(limit = 5, now: Date = new Date()): UpcomingReview[] {
+  const db = getDb();
+  const horizon = new Date(now.getTime() + 7 * 24 * 3600 * 1000).toISOString();
+  return db
+    .prepare(
+      `SELECT w.id AS word_id, w.lemma, w.cefr_level, c.due
+       FROM cards c JOIN words w ON w.id = c.word_id
+       WHERE c.due <= ?
+       ORDER BY c.due ASC
+       LIMIT ?`
+    )
+    .all(horizon, limit) as UpcomingReview[];
+}
+
 export function getWordReviewHistory(wordId: number): ReviewLog[] {
   const db = getDb();
   return db

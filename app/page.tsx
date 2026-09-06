@@ -1,15 +1,23 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/Card";
 import { getOverview, getRandomWordWithDefinition } from "@/lib/vocab";
-import { countDue, countNew } from "@/lib/practice";
+import { countDue, countNew, getUpcomingReviews } from "@/lib/practice";
 
 export const dynamic = "force-dynamic";
+
+function dueLabel(due: string, now: number): string {
+  const days = Math.round((new Date(due).getTime() - now) / 86_400_000);
+  if (days <= 0) return "due now";
+  return `in ${days}d`;
+}
 
 export default function HomePage() {
   const overview = getOverview();
   const due = countDue();
   const newCards = countNew();
   const randomWord = getRandomWordWithDefinition();
+  const upcoming = getUpcomingReviews(5);
+  const now = Date.now();
   const totalMax = Math.max(...overview.byCefr.map((c) => c.count), 1);
   const levelColors: Record<string, string> = {
     A1: "bg-emerald-500",
@@ -51,6 +59,42 @@ export default function HomePage() {
           </Card>
         </Link>
       </div>
+
+      {upcoming.length > 0 && (
+        <Card>
+          <CardContent>
+            <div className="mb-3 flex items-center justify-between">
+              <h2 className="text-base font-semibold">Up next</h2>
+              <Link
+                href="/practice"
+                className="text-xs text-blue-600 hover:underline dark:text-blue-400"
+              >
+                Practice →
+              </Link>
+            </div>
+            <ul className="divide-y divide-gray-50 dark:divide-gray-800">
+              {upcoming.map((u) => (
+                <li key={u.word_id}>
+                  <Link
+                    href={`/words/${u.word_id}`}
+                    className="flex items-center justify-between py-1.5 text-sm hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    <span className="font-medium">{u.lemma}</span>
+                    <span className="flex items-center gap-2">
+                      <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+                        {u.cefr_level}
+                      </span>
+                      <span className="w-14 text-right text-xs text-gray-400">
+                        {dueLabel(u.due, now)}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      )}
 
       {randomWord && (
         <Link href={`/words/${randomWord.id}`}>
