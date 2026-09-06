@@ -276,6 +276,20 @@ export function getReviewHistory(): ReviewLog[] {
     .all() as ReviewLog[];
 }
 
+export function getWordReviewHistory(wordId: number): ReviewLog[] {
+  const db = getDb();
+  return db
+    .prepare(
+      `SELECT r.word_id, w.lemma, w.part_of_speech, w.cefr_level,
+              r.rating, r.reviewed_at, r.scheduled_days
+       FROM review_logs r
+       JOIN words w ON w.id = r.word_id
+       WHERE r.word_id = ?
+       ORDER BY r.reviewed_at DESC`
+    )
+    .all(wordId) as ReviewLog[];
+}
+
 export interface LevelStats {
   cefr_level: string;
   total: number;

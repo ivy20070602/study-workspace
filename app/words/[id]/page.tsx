@@ -6,8 +6,17 @@ import { SpeakButton } from "@/components/SpeakButton";
 import { WordNavKeys } from "@/components/WordNavKeys";
 import { getWordById, getAdjacentWords } from "@/lib/vocab";
 import { isBookmarked } from "@/lib/bookmarks";
+import { getWordReviewHistory } from "@/lib/practice";
 
 export const dynamic = "force-dynamic";
+
+const RATING_LABEL: Record<number, string> = { 1: "Again", 2: "Hard", 3: "Good", 4: "Easy" };
+const RATING_COLOR: Record<number, string> = {
+  1: "text-red-600",
+  2: "text-amber-600",
+  3: "text-blue-600",
+  4: "text-emerald-600",
+};
 
 export default async function WordDetailPage({
   params,
@@ -22,6 +31,7 @@ export default async function WordDetailPage({
 
   const { prev, next } = getAdjacentWords(word.id, word.cefr_level);
   const bookmarked = isBookmarked(word.normalized_lemma);
+  const history = getWordReviewHistory(word.id);
 
   return (
     <div className="space-y-5">
@@ -94,6 +104,40 @@ export default async function WordDetailPage({
           </Card>
         ))}
       </div>
+
+      {history.length > 0 && (
+        <Card>
+          <CardContent>
+            <h2 className="mb-3 text-base font-semibold">Practice history</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-100 text-left text-xs text-gray-500 dark:border-gray-800 dark:text-gray-400">
+                    <th className="pb-2 font-medium">Rating</th>
+                    <th className="pb-2 font-medium">Interval</th>
+                    <th className="pb-2 font-medium">When</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
+                  {history.map((h, i) => (
+                    <tr key={i}>
+                      <td className={`py-1.5 font-medium ${RATING_COLOR[h.rating] ?? ""}`}>
+                        {RATING_LABEL[h.rating] ?? h.rating}
+                      </td>
+                      <td className="py-1.5 text-gray-500 dark:text-gray-400">
+                        {h.scheduled_days === 0 ? "<1d" : `${h.scheduled_days}d`}
+                      </td>
+                      <td className="py-1.5 text-gray-500 dark:text-gray-400">
+                        {new Date(h.reviewed_at).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="flex items-center justify-between pt-2">
         {prev ? (
