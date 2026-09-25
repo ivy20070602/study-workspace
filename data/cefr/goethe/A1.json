@@ -1,0 +1,2928 @@
+[
+  {
+    "lemma": "ab",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aber",
+    "part_of_speech": "Konjunktion",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "abfahren",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "abfliegen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "abgeben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "abholen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "acht",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "achtzehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "achtzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "alle",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "alles",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "also",
+    "part_of_speech": "Konjunktion",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "alt",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "an",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "an",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "anbieten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ander",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "anfangen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "anklicken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ankommen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ankreuzen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "anmachen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "anmelden",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "anrufen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "antworten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "anziehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "arbeiten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "arbeitslos",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "auch",
+    "part_of_speech": "Konjunktion",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "auf",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "auf sein",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aufhören",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aufstehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aus",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aus",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aus sein",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ausfüllen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ausländisch",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ausmachen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aussehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "aussteigen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ausziehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "automatisch",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "baden",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bald",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bar",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bedeuten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "beginnen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bei",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bekannt",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bekommen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "benutzen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "besetzt",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "besichtigen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "besser",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "best",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bestellen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "besuchen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bezahlen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "billig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bisschen",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bitte",
+    "part_of_speech": "Partikel",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bitten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bitter",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "blau",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bleiben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "brauchen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "braun",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "breit",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bringen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "buchstabieren",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "bös",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "böse",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "circa",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "da",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "daneben",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "danke",
+    "part_of_speech": "Partikel",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "danken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dann",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dauern",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dein",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "deine",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "denn",
+    "part_of_speech": "Konjunktion",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "deutsch",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dich",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dir",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dort",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "draußen",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "drei",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dreizehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dreißig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dritte",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "drucken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "drücken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "durch",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "duschen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "dürfen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "eilig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "einfach",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "einhundert",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "einkaufen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "einladen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "eins",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "einsteigen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "eintausend",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "elf",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "empfehlen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "enden",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "entschuldigen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "er",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "erklären",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "erlauben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "erste",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "erzählen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "es",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "essen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "euer",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "eure",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "europäisch",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fahren",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "falsch",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fehlen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "feiern",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fernsehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fertig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "finden",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fliegen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fragen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "frei",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fremd",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "freuen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "früher",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "frühstücken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fünf",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fünfzehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "fünfzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "für",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "geben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "geboren",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gefallen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gegen",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gehören",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gelb",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gerade",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "geradeaus",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gern",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gerne",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "geschlossen",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gestern",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gewinnen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "glauben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gleich",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gleich",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "glücklich",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "grade",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gradeaus",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gratulieren",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "grau",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "grillen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "groß",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "grün",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gut",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "gültig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "günstig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "haben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "halb",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "hallo",
+    "part_of_speech": "Interjection",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "halten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "heiraten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "heißen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "helfen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "hell",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "herzlich",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "heut",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "heute",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "hier",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "hinten",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "hoch",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "holen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "hundert",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "hören",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ich",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ihm",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ihn",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "Ihr",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ihr",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": true,
+    "level": "A1"
+  },
+  {
+    "lemma": "ihr",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "Ihre",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ihre",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "immer",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "in",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "international",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ja",
+    "part_of_speech": "Partikel",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "jede",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "jeder",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "jedes",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "jetzt",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "jung",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kaputt",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kaufen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kein",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kennen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kennen lernen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kennenlernen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "klar",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "klein",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kochen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kommen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kosten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "krank",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kriegen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kulturell",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kurz",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "können",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "kümmern",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lachen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lang",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lange",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "langsam",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "laufen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "laut",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "leben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ledig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "legen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "leicht",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "leider",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "leise",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lernen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lesen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "letzt",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lieb",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lieben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lieber",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "liegen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "links",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "lustig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "machen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "man",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mehr",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mein",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "meine",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "meist",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mieten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mit",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mitbringen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mitkommen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mitmachen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mitnehmen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "morgen",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "männlich",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "mögen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "möglich",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "müde",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "müssen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nach",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nehmen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nein",
+    "part_of_speech": "Partikel",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "neu",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "neun",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "neunzehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "neunzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nicht",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nichts",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nie",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "noch",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "normal",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nur",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "nächst",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "oben",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "oder",
+    "part_of_speech": "Konjunktion",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "oft",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "Pommes frites",
+    "part_of_speech": "Phrase",
+    "article": null,
+    "only_plural": true,
+    "level": "A1"
+  },
+  {
+    "lemma": "pünktlich",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "Rad fahren",
+    "part_of_speech": "Phrase",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "rauchen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "rechts",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "regnen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "reisen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "reparieren",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "richtig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "riechen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "rot",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "ruhig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sagen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "scheinen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schicken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schlafen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schlecht",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schließen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schmecken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schnell",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schon",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schreiben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schwarz",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schwer",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schwimmen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "schön",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sechs",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sechzehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sechzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sehr",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sein",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sein",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "seine",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "selbstständig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "selbständig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sich",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "Sie",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sie",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sie",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": true,
+    "level": "A1"
+  },
+  {
+    "lemma": "sieben",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "siebenzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "siebzehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "siebzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sitzen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sofort",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sollen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "spielen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "sprechen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "spät",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "später",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "stehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "stellen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "studieren",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "suchen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "tanzen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "tausend",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "telefonieren",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "teuer",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "tot",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "treffen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "trinken",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "Tschüss",
+    "part_of_speech": "Interjection",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "tschüss",
+    "part_of_speech": "Interjection",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "tun",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "um",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "umziehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "und",
+    "part_of_speech": "Konjunktion",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "unser",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "unsere",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "unsre",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "unten",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "unter",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "unterschreiben",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "verboten",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "verdienen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "verheiratet",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "verkaufen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vermieten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "verstehen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "viel",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vielleicht",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vier",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vierte",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vierzehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vierzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "von",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vor",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "vorstellen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wandern",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wann",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "warten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "warum",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "was",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "was für ein",
+    "part_of_speech": "Phrase",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "was für eine",
+    "part_of_speech": "Phrase",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "waschen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "weg sein",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "weh tun",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wehtun",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "weiblich",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "weit",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "weiß",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "welche",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "welcher",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "welches",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wenig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wer",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "werden",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wichtig",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wie",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wie viel",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wieder",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wieder holen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wiederholen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wiederholen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "willkommen",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wir",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wissen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wo",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "woher",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wohin",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wohnen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wollen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "wunderbar",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zahlen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zehn",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zirka",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zu",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zu",
+    "part_of_speech": "Partikel",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zu sein",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zufrieden",
+    "part_of_speech": "Adjektiv",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zurzeit",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zurück",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zusammen",
+    "part_of_speech": "Adverb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zwanzig",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zwei",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zweihundert",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zweite",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zwischen",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "zwölf",
+    "part_of_speech": "Numeral",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "öffnen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "über",
+    "part_of_speech": "Präposition",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "übernachten",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "überweisen",
+    "part_of_speech": "Verb",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  },
+  {
+    "lemma": "’s",
+    "part_of_speech": "Pronomen",
+    "article": null,
+    "only_plural": false,
+    "level": "A1"
+  }
+]

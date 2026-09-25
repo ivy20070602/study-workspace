@@ -40,4 +40,16 @@ yarn-error.log*
 next-env.d.ts
 
 # local data (user data, uploads, SQLite)
-/data/
+# Derived vocabulary dataset (words.jsonl + CEFR layer JSONs) IS committed so a
+# clean checkout can rebuild the DB via `npm run content:import` without the raw
+# downloads. The DB itself and any uploads stay local.
+/data/*
+!/data/cefr/
+/data/cefr/*
+!/data/cefr/goethe/
+/data/cefr/goethe/*
+!/data/cefr/goethe/*.json
+!/data/cefr/dwds/
+/data/cefr/dwds/*
+!/data/cefr/dwds/*.json
+!/data/cefr/words.jsonl
