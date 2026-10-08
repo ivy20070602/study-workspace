@@ -10,6 +10,8 @@ import type {
   Material,
   Note,
   PomodoroLog,
+  Routine,
+  RoutineLog,
   Schedule,
   ScheduleWithCourse,
   SearchResult,
@@ -30,6 +32,8 @@ export const COLLECTIONS = [
   "deadlines",
   "pomodoro_logs",
   "todos",
+  "routines",
+  "routineLogs",
 ] as const;
 
 export type CollectionKey = (typeof COLLECTIONS)[number];
@@ -338,5 +342,7 @@ export function useAllRepos() {
   const deadlines = useRepo<Deadline>("deadlines");
   const pomodoroLogs = useRepo<PomodoroLog>("pomodoro_logs");
   const todos = useRepo<Todo>("todos");
-  return { semesters, courses, schedule, notes, materials, exercises, journal, deadlines, pomodoroLogs, todos };
+  const routines = useRepo<Routine>("routines");
+  const routineLogs = useRepo<RoutineLog>("routineLogs");
+  return { semesters, courses, schedule, notes, materials, exercises, journal, deadlines, pomodoroLogs, todos, routines, routineLogs };
 }

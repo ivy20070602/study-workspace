@@ -2,6 +2,130 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --font-sans: ui-rounded, "SF Pro Rounded", "PingFang SC", "Hiragino Sans GB",
+    system-ui, -apple-system, sans-serif;
+
+  --color-ink: #2b1a3f;
+  --color-cream: #fff8ec;
+  --color-card: #ffffff;
+
+  --color-candy-50: #fff0f4;
+  --color-candy-100: #ffe0e8;
+  --color-candy-200: #ffc2cf;
+  --color-candy-300: #ff8fab;
+  --color-candy-400: #ff6b92;
+  --color-candy-500: #ff4d7d;
+  --color-candy-600: #e8336a;
+  --color-candy-700: #c21e56;
+
+  --color-peachy-200: #ffd1b3;
+  --color-peachy-300: #ffb27d;
+  --color-peachy-400: #ff9770;
+  --color-peachy-500: #ff7a59;
+
+  --color-sunny-200: #ffe8a8;
+  --color-sunny-300: #ffd166;
+  --color-sunny-400: #ffc233;
+  --color-sunny-500: #ffab00;
+
+  --color-mint-200: #b8f3dd;
+  --color-mint-300: #7fe8c9;
+  --color-mint-400: #4dd0a1;
+  --color-mint-500: #12b981;
+
+  --color-sky-200: #b8dcff;
+  --color-sky-300: #7cc7ff;
+  --color-sky-400: #4dabf7;
+  --color-sky-500: #2f8ce0;
+
+  --color-grape-200: #e6ccff;
+  --color-grape-300: #c99cff;
+  --color-grape-400: #b06ef5;
+  --color-grape-500: #9452e0;
+
+  --color-night-500: #8b6bb8;
+  --color-night-600: #6b4d99;
+  --color-night-700: #4d3370;
+  --color-night-800: #382452;
+  --color-night-900: #291a3d;
+  --color-night-950: #1b0f29;
+
+  --animate-bob: bob 3s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-float-slower: float 12s ease-in-out infinite;
+  --animate-pop-in: pop-in 0.35s cubic-bezier(0.17, 0.89, 0.32, 1.28) both;
+  --animate-wiggle: wiggle 1.4s ease-in-out infinite;
+  --animate-blob: blob 14s ease-in-out infinite;
+  --animate-sparkle: sparkle 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(24px, -28px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 16px) scale(0.94);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(20deg);
+  }
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -10,5 +134,45 @@
   body {
     min-height: 100dvh;
     -webkit-tap-highlight-color: transparent;
+    color: var(--color-ink);
+    background-color: var(--color-cream);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  :root {
+    --color-ink: #2b1a3f;
+    --color-cream: #fff8ec;
+    --color-card: #ffffff;
+  }
+
+  .dark {
+    --color-ink: #d9c7f0;
+    --color-cream: #1b0f29;
+    --color-card: #2c1a40;
+  }
+
+  ::selection {
+    background-color: var(--color-candy-300);
+    color: var(--color-ink);
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-candy-300);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-candy-300);
+    outline-offset: 2px;
+    border-radius: 6px;
   }
 }

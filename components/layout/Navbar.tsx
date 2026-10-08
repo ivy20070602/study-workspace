@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Icons } from "./icons";
 import { useTheme } from "./ThemeProvider";
+import Piggy from "./Piggy";
 
 const links = [
   { href: "/", label: "首页" },
@@ -25,20 +26,23 @@ export default function Navbar() {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <nav className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-gray-900/90">
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-4">
-        <Link href="/" className="flex items-center gap-2 font-semibold">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-blue-600 text-white">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              />
-            </svg>
+    <nav className="sticky top-0 z-40 border-b-2 border-ink/70 bg-cream/85 backdrop-blur-md dark:border-ink/20 dark:bg-night-950/85">
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4">
+        <Link href="/" className="group flex items-center gap-2.5">
+          <span className="animate-bob drop-shadow-[0_2px_0_var(--color-ink)]">
+            <Piggy className="h-10 w-10 transition-transform group-hover:scale-110" />
           </span>
-          学习工作台
+          <span className="leading-tight">
+            <span className="block text-lg font-extrabold tracking-wide">
+              飞猪多
+              <span className="ml-1.5 align-middle text-[10px] font-black uppercase tracking-widest text-ink/50 dark:text-ink/40">
+                workspace
+              </span>
+            </span>
+            <span className="block text-[11px] font-semibold text-ink/50 dark:text-ink/40">
+              每天醒来的第一页 ☀️
+            </span>
+          </span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -46,10 +50,10 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className={`rounded-lg px-3 py-1.5 text-sm ${
+              className={`rounded-full border-2 px-3.5 py-1.5 text-sm font-bold transition-all ${
                 isActive(l.href)
-                  ? "bg-blue-50 font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
-                  : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+                  ? "border-ink bg-gradient-to-r from-candy-500 to-peachy-400 text-white shadow-[2px_2px_0_0_var(--color-ink)] -translate-y-0.5"
+                  : "border-transparent text-ink/70 hover:-translate-y-0.5 hover:bg-candy-100 hover:text-ink dark:text-ink/60 dark:hover:bg-night-700"
               }`}
             >
               {l.label}
@@ -60,14 +64,14 @@ export default function Navbar() {
         <div className="ml-auto flex items-center gap-2">
           <button
             onClick={toggle}
-            className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+            className="grid h-9 w-9 place-items-center rounded-full border-2 border-ink/70 text-ink/70 transition hover:-translate-y-0.5 hover:border-sunny-400 hover:text-sunny-500 dark:border-ink/30 dark:hover:border-sunny-500"
             aria-label="切换主题"
           >
             {theme === "dark" ? Icons.sun : Icons.moon}
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 md:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full border-2 border-ink/70 text-ink/70 transition hover:-translate-y-0.5 dark:border-ink/30 md:hidden"
             aria-label="菜单"
           >
             {open ? Icons.close : Icons.menu}
@@ -76,21 +80,23 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-gray-200 bg-white px-4 py-2 dark:border-gray-800 dark:bg-gray-900 md:hidden">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className={`block rounded-lg px-3 py-2 text-sm ${
-                isActive(l.href)
-                  ? "bg-blue-50 font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
-                  : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
-              }`}
-            >
-              {l.label}
-            </Link>
-          ))}
+        <div className="border-t-2 border-ink/20 bg-card px-4 py-3 md:hidden dark:border-ink/10">
+          <div className="grid grid-cols-2 gap-2">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-2xl border-2 px-3 py-2 text-sm font-bold transition ${
+                  isActive(l.href)
+                    ? "border-ink bg-gradient-to-r from-candy-500 to-peachy-400 text-white shadow-[2px_2px_0_0_var(--color-ink)]"
+                    : "border-ink/40 text-ink/70"
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </nav>

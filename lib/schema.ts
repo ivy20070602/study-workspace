@@ -78,6 +78,21 @@ export interface PomodoroLog {
   duration_min: number;
 }
 
+export interface Routine {
+  id: number;
+  label: string;
+  emoji: string;
+  hint: string | null;
+  order: number;
+  created_at: string;
+}
+
+export interface RoutineLog {
+  id: number;
+  routine_id: number;
+  date: string; // YYYY-MM-DD（本地日期）
+}
+
 export interface Todo {
   id: number;
   content: string;
@@ -95,6 +110,8 @@ export type NewExercise = Omit<Exercise, "id" | "created_at" | "is_done">;
 export type NewJournalEntry = Omit<JournalEntry, "id" | "created_at">;
 export type NewDeadline = Omit<Deadline, "id" | "created_at" | "is_done">;
 export type NewPomodoroLog = Omit<PomodoroLog, "id">;
+export type NewRoutine = Omit<Routine, "id" | "created_at">;
+export type NewRoutineLog = Omit<RoutineLog, "id">;
 export type NewTodo = Omit<Todo, "id" | "created_at" | "is_done" | "completed_at">;
 
 export interface DeadlineWithCourse extends Deadline {
