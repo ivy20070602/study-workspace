@@ -18,12 +18,14 @@ export default function Reveal({
   delay = 0,
   variant = "up",
   once = true,
+  id,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
   variant?: Variant;
   once?: boolean;
+  id?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
@@ -49,6 +51,7 @@ export default function Reveal({
   return (
     <div
       ref={ref}
+      id={id}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transition-all duration-500 ease-out will-change-transform ${
         shown
