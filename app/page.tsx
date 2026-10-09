@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import TodayOverview from "@/components/dashboard/TodayOverview";
 import PomodoroTimer from "@/components/pomodoro/PomodoroTimer";
 import RoutinePanel from "@/components/wakeup/RoutinePanel";
 import Card from "@/components/ui/Card";
+import Reveal from "@/components/ui/Reveal";
 import Piggy from "@/components/layout/Piggy";
 
 const WEEK = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
@@ -17,6 +18,8 @@ const PUNCHLINES = [
   "按时吃饭，记得喝水～",
   "你今天真好看 ✨",
   "小步子，也能走到很远的远方。",
+  "爱笑的人，运气不会太差 😄",
+  "把今天过好，就是最好的未来。",
 ];
 
 const quickLinks = [
@@ -39,11 +42,16 @@ function greetingFor(hour: number): string {
 
 export default function Home() {
   const [now, setNow] = useState<Date | null>(null);
+  const railRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setNow(new Date());
   }, []);
+
+  const scrollRail = (dir: -1 | 1) => {
+    railRef.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
+  };
 
   return (
     <div className="animate-pop-in space-y-6">
@@ -69,42 +77,90 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="shrink-0">
-            <Piggy className="h-36 w-36 animate-bob drop-shadow-[3px_5px_0_var(--color-ink)] sm:h-44 sm:w-44" />
+          <div className="shrink-0 group">
+            <Piggy className="h-36 w-36 animate-bob drop-shadow-[3px_5px_0_var(--color-ink)] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105 sm:h-44 sm:w-44" />
           </div>
         </div>
       </section>
 
-      <RoutinePanel />
+      <Reveal>
+        <RoutinePanel />
+      </Reveal>
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
-        <div>
-          <TodayOverview />
-        </div>
-        <div>
-          <PomodoroTimer />
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {quickLinks.map((q) => (
-              <Link key={q.href} href={q.href} className="group">
-                <div
-                  className={`h-full rounded-3xl border-2 border-ink bg-gradient-to-br ${q.grad} p-4 text-white shadow-[3px_3px_0_0_var(--color-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[5px_5px_0_0_var(--color-ink)]`}
-                >
-                  <div className="text-2xl transition-transform duration-200 group-hover:scale-125 inline-block">
-                    {q.icon}
+      <Reveal variant="left">
+        <section>
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div>
+              <h2 className="text-xl font-extrabold">模块滑梯</h2>
+              <p className="text-xs font-semibold text-ink/50 dark:text-ink/40">
+                左右滑动（可吸附），滑到哪进哪 🛝
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => scrollRail(-1)}
+                className="grid h-10 w-10 place-items-center rounded-full border-2 border-ink bg-card text-lg font-black shadow-[2px_2px_0_0_var(--color-ink)] transition hover:-translate-y-0.5 hover:border-sky-400"
+                aria-label="向左滑动"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => scrollRail(1)}
+                className="grid h-10 w-10 place-items-center rounded-full border-2 border-ink bg-card text-lg font-black shadow-[2px_2px_0_0_var(--color-ink)] transition hover:-translate-y-0.5 hover:border-candy-400"
+                aria-label="向右滑动"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={railRef}
+            className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {quickLinks.map((q, i) => (
+              <Link key={q.href} href={q.href} className="shrink-0 snap-start">
+                <Reveal delay={i * 70} variant="up">
+                  <div
+                    className={`group w-64 rounded-3xl border-2 border-ink bg-gradient-to-br ${q.grad} p-5 text-white shadow-[4px_4px_0_0_var(--color-ink)] transition-all duration-200 hover:-translate-y-1.5 hover:rotate-1 hover:shadow-[6px_6px_0_0_var(--color-ink)]`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="inline-block text-4xl transition-transform duration-200 group-hover:scale-125 group-hover:-rotate-6">
+                        {q.icon}
+                      </div>
+                      <span className="rounded-full border-2 border-ink/30 bg-white/25 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider">
+                        tap
+                      </span>
+                    </div>
+                    <div className="mt-3 text-xl font-extrabold drop-shadow-[0_1.5px_0_rgba(43,26,63,0.55)]">
+                      {q.label}
+                    </div>
+                    <div className="text-xs font-semibold text-white/85">{q.desc}</div>
                   </div>
-                  <div className="mt-1 font-extrabold drop-shadow-[0_1px_0_rgba(43,26,63,0.6)]">{q.label}</div>
-                  <div className="text-xs font-semibold text-white/85">{q.desc}</div>
-                </div>
+                </Reveal>
               </Link>
             ))}
           </div>
-          <Card className="mt-4 text-center">
-            <p className="text-sm font-bold text-ink/60 dark:text-ink/50">
-              万物皆有裂痕，那是光照进来的地方 💛
-            </p>
-          </Card>
-        </div>
+        </section>
+      </Reveal>
+
+      <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
+        <Reveal delay={80}>
+          <TodayOverview />
+        </Reveal>
+        <Reveal delay={160} variant="right">
+          <PomodoroTimer />
+        </Reveal>
       </div>
+
+      <Reveal variant="zoom">
+        <Card className="mt-4 text-center">
+          <p className="animate-wiggle text-2xl">💛</p>
+          <p className="mt-1 text-sm font-bold text-ink/60 dark:text-ink/50">
+            万物皆有裂痕，那是光照进来的地方
+          </p>
+        </Card>
+      </Reveal>
     </div>
   );
 }
