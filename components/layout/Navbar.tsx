@@ -14,6 +14,7 @@ const links = [
   { href: "/todos", label: "待办" },
   { href: "/journal", label: "日记" },
   { href: "/deadlines", label: "截止日期" },
+  { href: "/stats", label: "数据" },
   { href: "/search", label: "搜索" },
   { href: "/settings", label: "设置" },
 ];

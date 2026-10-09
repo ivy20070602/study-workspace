@@ -6,6 +6,7 @@ import type { RefObject } from "react";
 const DOTS = [
   { id: "cover", label: "封面" },
   { id: "routine", label: "今日例行" },
+  { id: "insights", label: "学习小数据" },
   { id: "rail", label: "模块滑梯" },
   { id: "overview", label: "今日一览" },
   { id: "quote", label: "一句鸡汤" },

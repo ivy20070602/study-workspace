@@ -5,7 +5,10 @@ import Link from "next/link";
 import TodayOverview from "@/components/dashboard/TodayOverview";
 import PomodoroTimer from "@/components/pomodoro/PomodoroTimer";
 import RoutinePanel from "@/components/wakeup/RoutinePanel";
+import PiggyLevel from "@/components/wakeup/PiggyLevel";
 import SnapDots from "@/components/wakeup/SnapDots";
+import Insights from "@/components/dashboard/Insights";
+import ExamCountdown from "@/components/deadlines/ExamCountdown";
 import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
 import Piggy from "@/components/layout/Piggy";
@@ -76,9 +79,12 @@ export default function Home() {
         >
           <div className="pointer-events-none absolute -left-16 top-12 h-44 w-44 animate-blob rounded-full bg-white/70 blur-2xl dark:bg-night-500/30" />
           <div className="pointer-events-none absolute -right-14 bottom-10 h-44 w-44 animate-blob rounded-full bg-white/60 blur-2xl [animation-delay:-6s] dark:bg-night-500/25" />
-          <div className="pointer-events-none absolute right-[16%] top-[14%] animate-sparkle text-3xl">✨</div>
-          <div className="pointer-events-none absolute left-[14%] top-[22%] animate-sparkle text-2xl [animation-delay:-0.9s]">⭐</div>
-          <div className="pointer-events-none absolute left-[22%] bottom-[18%] animate-sparkle text-2xl [animation-delay:-1.4s]">💖</div>
+          <div className="pointer-events-none absolute right-[12%] top-[10%] animate-sparkle text-4xl opacity-60 sm:text-5xl">✨</div>
+          <div className="pointer-events-none absolute left-[10%] top-[18%] animate-sparkle text-3xl opacity-40 [animation-delay:-0.9s] sm:text-4xl">⭐</div>
+          <div className="pointer-events-none absolute left-[20%] bottom-[16%] animate-float-slow text-4xl opacity-50 sm:text-5xl">💖</div>
+          <div className="absolute right-4 top-4 z-10">
+            <PiggyLevel />
+          </div>
 
           <div className="relative z-10 animate-pop-in rounded-full border-2 border-ink bg-card px-4 py-1.5 text-sm font-black shadow-[2px_2px_0_0_var(--color-ink)]">
             <span className="inline-block animate-wiggle">☀️</span>{" "}
@@ -137,6 +143,14 @@ export default function Home() {
         {/* ===== 今日例行 ===== */}
         <Reveal id="routine" className="snap-start scroll-mt-2">
           <RoutinePanel />
+        </Reveal>
+
+        {/* ===== 学习小数据 + 考试倒计时 ===== */}
+        <Reveal id="insights" variant="up" className="snap-start scroll-mt-2">
+          <div className="space-y-4">
+            <ExamCountdown />
+            <Insights />
+          </div>
         </Reveal>
 
         {/* ===== 模块滑梯 ===== */}
